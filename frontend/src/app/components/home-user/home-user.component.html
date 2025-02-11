@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RentAuto - Tu tienda de renta de autos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="home-user.component.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="user">MLBAR</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/user">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/historial">Tu Reserva</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/empresa">Empresa</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Botón de login -->
+            <button class="btn btn-outline-light" (click)="login()" type="button">Login</button>
+        </div>
+    </nav>
+    
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+          <div class="carousel-item active">
+              <img src="https://autoclima.com.pe/web2021/wp-content/uploads/2021/02/banner-autos-aire-acondicionado-1.jpg" class="d-block w-100" style="height: 400px;" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                  <div class="card text-white bg-dark-transparent">
+                      <div class="card-body">
+                          <h1 class="display-4">¡Bienvenidos Aventureros!</h1>
+                          <p class="lead">Descubre el placer de viajar con RentAuto</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div><div class="container">
+    <div class="card mx-auto mt-5 custom-card" style="max-width: 800px;">
+      <div class="card-body">
+        <p class="card-text fs-6">Tu destino para alquilar el auto perfecto.</p>
+        <form [formGroup]="reservaForm" (ngSubmit)="onSubmit()" class="row g-3">
+          <div class="col-md-6">
+            <label for="lugarS" class="form-label fs-6">Lugar de Salida:</label>
+            <select class="form-control" id="lugarS" name="lugarS" required formControlName="lugarS">
+              <option value="">Selecciona un lugar</option>
+              <option *ngFor="let lugar of lugares" [value]="lugar.nombre">{{ lugar.nombre }}</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label for="fechasS" class="form-label fs-6">Salida:</label>
+            <input type="date" class="form-control" id="fechasS" name="fechasS" required formControlName="fechasS" [min]="currentDate">
+          </div>
+          <div class="col-md-3">
+            <label for="horasS" class="form-label fs-6">Hora:</label>
+            <input type="time" class="form-control" id="horasS" name="horasS" required formControlName="horasS">
+          </div>
+          <div class="col-md-6">
+            <label for="lugarE" class="form-label fs-6">Lugar de Entrega:</label>
+            <select class="form-control" id="lugarE" name="lugarE" required formControlName="lugarE" >
+              <option value="">Selecciona un lugar</option>
+              <option *ngFor="let lugar of lugares" [value]="lugar.nombre">{{ lugar.nombre }}</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label for="fechasE" class="form-label fs-6">Entrega:</label>
+            <input type="date"  class="form-control" id="fechasE" name="fechasE" required formControlName="fechasE" [min]="currentDate">
+          </div>
+          <div class="col-md-3">
+            <label for="horasE" class="form-label fs-6">Hora:</label>
+            <input type="time" class="form-control" id="horasE" name="horasE" required formControlName="horasE">
+          </div>
+           <div class="col-auto">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="usarCupon" formControlName="usarCupon">
+              <label class="form-check-label fs-6" for="usarCupon">Cupón:</label>
+            </div>
+          </div>
+          <div class="col-md-6" *ngIf="reservaForm.get('usarCupon')?.value" style="padding: 10px;">
+            <label for="descuento" class="form-label fs-6">Código del Cupón:</label>
+            <input type="text" class="form-control" id="descuento" name="descuento" formControlName="descuento">
+        </div> 
+        </form> 
+        <div class="col-md-9">
+          <button style="width: 735px; border: 10px;" type="submit" class="btn btn-danger btn-lg"(click)="onSubmit()">Reservar Auto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="row mt-5">
+    <div class="col-md-6">
+        <img style="padding: 25px;" src="https://media.istockphoto.com/id/528474010/es/foto/recuerdos-de-hacer.jpg?s=612x612&w=0&k=20&c=UMcoCWmqpi2EVYP5nU__6SsJq-cZhHjthEb7IRtXGnA="
+            class="img-fluid rounded-image" alt="Imagen de Recuerdos">
+    </div>
+    <div class="col-md-6" style="padding: 60px 40px;">
+        <h2>Descubre todo lo que tenemos para ti en RentAuto</h2>
+        <p>Nuestros servicios de alquiler de autos están diseñados para brindarte la mejor experiencia de viaje posible. Desde coches económicos hasta vehículos de lujo, tenemos una amplia variedad de opciones para adaptarnos a tus necesidades. Con precios competitivos y una atención al cliente excepcional, estamos aquí para hacer que tu próximo viaje sea inolvidable. ¡Reserva con nosotros hoy y comienza tu aventura!</p>
+    </div>
+</div>
+
+<div class="container mt-5">
+  <div class="card">
+      <div class="card-body">
+          <h2 class="text-center">Descubre nuestras sedes en las ciudades más importantes de todo el mundo</h2>
+          
+          <div class="row mt-3">
+              <!-- México -->
+              <div class="col-md-4">
+                  <h3>México</h3>
+                  <ul>
+                      <li>Ciudad de México</li>
+                      <li>Guadalajara</li>
+                      <li>Monterrey</li>
+                      <li>Puebla</li>
+                      <li>Cancún</li>
+                  </ul>
+              </div>
+              
+              <!-- Estados Unidos -->
+              <div class="col-md-4">
+                  <h3>Estados Unidos</h3>
+                  <ul>
+                      <li>Los Ángeles</li>
+                      <li>Nueva York</li>
+                      <li>Chicago</li>
+                      <li>Miami</li>
+                      <li>Las Vegas</li>
+                  </ul>
+              </div>
+              
+              <!-- España -->
+              <div class="col-md-4">
+                  <h3>España</h3>
+                  <ul>
+                      <li>Madrid</li>
+                      <li>Barcelona</li>
+                      <li>Valencia</li>
+                      <li>Sevilla</li>
+                      <li>Bilbao</li>
+                  </ul>
+              </div>
+              
+              <!-- Francia -->
+              <div class="col-md-4">
+                  <h3>Francia</h3>
+                  <ul>
+                      <li>París</li>
+                      <li>Marsella</li>
+                      <li>Lyon</li>
+                      <li>Niza</li>
+                      <li>Toulouse</li>
+                  </ul>
+              </div>
+              
+              <!-- Japón -->
+              <div class="col-md-4">
+                  <h3>Japón</h3>
+                  <ul>
+                      <li>Tokio</li>
+                      <li>Kioto</li>
+                      <li>Osaka</li>
+                      <li>Hiroshima</li>
+                      <li>Nagoya</li>
+                  </ul>
+              </div>
+              
+              <!-- Inglaterra -->
+              <div class="col-md-4">
+                  <h3>Inglaterra</h3>
+                  <ul>
+                      <li>Londres</li>
+                      <li>Manchester</li>
+                      <li>Birmingham</li>
+                      <li>Liverpool</li>
+                      <li>Edimburgo</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+    <footer class="bg-dark text-white text-center py-4">
+        <p>&copy; 2024 RentAuto - Todos los derechos reservados</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
