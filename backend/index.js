@@ -6,7 +6,12 @@ const app = express();
 //Conectamos a la BD
 conectarDB();
 
+app.use(express.json());
+
 app.use('/api/auto', require('./routes/auto'));
+app.use('/api/sucursal', require('./routes/sucursal'));
+
+
 //Definimos ruta principal
 // app.get('/', (req, res) => {
 //     res.send('Hola, mundo!');
