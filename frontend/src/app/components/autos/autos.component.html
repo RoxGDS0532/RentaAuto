@@ -25,10 +25,10 @@
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/user/historial">Tu Reserva</a>
+            <a class="nav-link" href="/historial">Tu Reserva</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/user/empresa">Empresa</a>
+            <a class="nav-link" href="/empresa">Empresa</a>
           </li>
         </ul>
       </div>
@@ -67,11 +67,22 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
               <div class="col" *ngFor="let auto of autosFiltrados">
                 <div class="card shadow-sm">
-                    <!-- <ngb-carousel *ngIf="auto.imagenes && auto.imagenes.length">
-                      <ng-template ngbSlide *ngFor="let imagen of auto.imagenes">
-                        <img [src]="imagen" class="d-block w-100" alt="Imagen de auto">
-                      </ng-template>
-                    </ngb-carousel> -->
+                     <!-- Carrusel de imágenes -->
+                     <div id="carousel{{ auto.marca }}" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                          <div *ngFor="let imagen of auto.imagenes; let i = index" class="carousel-item" [class.active]="i === 0">
+                            <img [src]="imagen" class="d-block w-100" alt="Imagen del auto">
+                          </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button"  data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
                   <div class="card-body">
                     <h3 class="card-title">{{ auto.marca }} {{ auto.modelo }}</h3>
                     <h6 class="card-subtitle mb-2 text-muted">Modelo: {{ auto.anio }}</h6>

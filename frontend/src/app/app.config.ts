@@ -10,7 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient,withFetch } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,5 +27,6 @@ export const appConfig: ApplicationConfig = {
     BrowserModule,
     NgbModule,
     RouterModule,
+    NgbCarouselModule
   ]
 };
