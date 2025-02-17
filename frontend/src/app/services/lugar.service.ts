@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { LugarModel  } from '../models/datosModels';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,8 @@ export class LugarService {
   
   constructor(private http: HttpClient) { }
 
-  getSucursales() {
-    return this.http.get<LugarModel[]>(`${this.domain}/api/sucursal`).pipe(
-      map(res => res),
-      catchError(this.handleError)
-    );
+  getSucursales() : Observable<any[]> {
+    return this.http.get<LugarModel[]>(`${this.domain}/api/sucursal`)
   }
 
   addLugar(newLugar: LugarModel) {
