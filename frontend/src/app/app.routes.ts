@@ -6,7 +6,7 @@ import { AutosComponent } from './components/autos/autos.component';
 
 
 export const routes: Routes = [
-    {path: '', component: HomeUserComponent},
+    {path: '', component: HomeUserComponent, data:{titulo:'Home'}},
     {path:'login',component:LoginComponent},
-    {path:'auto', component:AutosComponent},
+    {path:'auto', component:AutosComponent, data:{titulo:'Flota'}},
 ];

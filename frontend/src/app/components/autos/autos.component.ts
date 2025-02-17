@@ -4,11 +4,12 @@ import { AutoModel } from 'src/app/models/datosModels';
 import { AutosService } from 'src/app/services/autos.service';
 import { LugarService } from 'src/app/services/lugar.service';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { BreadcrumbsComponent } from "../../shared/breadcrumbs/breadcrumbs.component";
 
 @Component({
   selector: 'app-autos',
   standalone: true,
-  imports: [CommonModule,NgbCarouselModule ],
+  imports: [CommonModule, NgbCarouselModule, BreadcrumbsComponent],
   templateUrl: './autos.component.html',
   styleUrl: './autos.component.css'
 })

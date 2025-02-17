@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { LugarService } from '../../services/lugar.service';
 import { Router } from '@angular/router';
+import { BreadcrumbsComponent } from '../../shared/breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-home-user',

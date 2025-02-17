@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, RouterModule } from '@angular/router';
 import { NgChartsModule } from 'ng2-charts';
 import { provideToastr } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
@@ -25,6 +25,7 @@ export const appConfig: ApplicationConfig = {
     SocialLoginModule,
     SpinnerComponent,
     BrowserModule,
-    NgbModule
+    NgbModule,
+    RouterModule,
   ]
 };
