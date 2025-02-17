@@ -1,0 +1,12 @@
+body{
+    background-image: url('../../../assets/auto.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container{
+    padding-top: 180px;
+    padding-bottom: 100px;
+
+}
