@@ -1,0 +1,50 @@
+<div class="wrapper black-bg">
+    <div class="wrapper">
+        <div *ngIf="!loading" class="body">
+            <img class="logo" src="../../../assets/img/key.png" alt="img login">
+            <h3>Registrar Usuario</h3>
+    
+            <div class="form-group">
+                <label for="usuario">Usuario</label>
+                <input type="text" id="usuario" [(ngModel)]="username" class="form-control" placeholder="Ingrese usuario">
+            </div>
+    
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" [(ngModel)]="password" class="form-control" placeholder="Ingrese password">
+                </div>
+                <div class="col-md-6">
+                    <label for="confirmPassword">Repetir Password</label>
+                    <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" class="form-control" placeholder="Ingrese password de nuevo">
+                </div>
+            </div>
+    
+            
+            <div class="form-group">
+                <label for="usuario">Nombre</label>
+                <input type="text" id="nombre" [(ngModel)]="nombre" class="form-control" placeholder="Ingrese su Nombre">
+            </div>
+    
+            <div class="form-group">
+                <label for="usuario">Apellido</label>
+                <input type="text" id="apellido" [(ngModel)]="apellido" class="form-control" placeholder="Ingrese sus Apellidos">
+            </div>
+            <div class="form-group">
+                <label for="usuario">CorreoElectronico</label>
+                <input type="text" id="CorreoElectronico" [(ngModel)]="correoElectronico" class="form-control" placeholder="Ingrese un Correo Electronico">
+            </div>
+            <div class="form-group">
+                <label for="telefono">Número de Teléfono</label>
+                <input type="text" id="NumeroTelefono" [(ngModel)]="NumeroTelefono" class="form-control" placeholder="Ingrese un Número de Teléfono">
+            </div>
+            <div class="d-grid gap-2 mb-3">
+                <button type="button" (click)="addUser()" class="btn btn-primary btn-lg">Aceptar</button>
+            </div>
+            
+            <a routerLink="/login">Volver</a>
+        </div>
+        <app-spinner *ngIf="loading"></app-spinner>
+    </div>
+    
+    
