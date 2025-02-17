@@ -10,12 +10,15 @@ import { CommonModule } from '@angular/common';
 import { UserglobalService } from 'src/app/services/userglobal.service';
 import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 
+
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule, CommonModule,SpinnerComponent],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
+
+
 })
 
 export class LoginComponent implements OnInit {
@@ -51,7 +54,7 @@ export class LoginComponent implements OnInit {
 
         this.usergo.setUserName(this.username);
         console.log('Nombre de usuario:', this.username);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/']);
       },
       error: (error: HttpErrorResponse) => {
         if (error.status === 404) {

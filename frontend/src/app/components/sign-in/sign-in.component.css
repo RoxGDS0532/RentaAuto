@@ -1,0 +1,83 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(220, 206, 206); /* Fondo gris claro */
+    color: white; /* Texto blanco */
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+    height: 100vh; /* Ocupa toda la pantalla */
+}
+
+/* Contenedor principal */
+.login-container, .sign-in-container {
+    background-color: #1a1a1a; /* Fondo oscuro */
+    padding: 3rem;
+    border-radius: 20px; /* Esquinas redondeadas */
+    box-shadow: 0 8px 16px rgba(254, 253, 253, 0.2); /* Sombra clara */
+    width: 100%;
+    max-width: 600px; /* Más ancho para el sign-up */
+}
+
+/* Estilo de la imagen */
+.logo {
+    max-width: 120px;
+    margin-bottom: 20px;
+}
+
+/* Títulos más claros */
+.title, .subtitle {
+    color: #f0f0f0; /* Color más claro */
+}
+
+/* Botón personalizado marrón */
+.custom-btn, .btn-primary {
+    background-color: brown;
+    color: white;
+    padding: 12px;
+    font-size: 18px; /* Texto más grande */
+    border: none;
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+.custom-btn:hover, .btn-primary:hover {
+    background-color: #8b4513; /* Marrón más oscuro al pasar el mouse */
+}
+
+/* Estilo de los enlaces */
+.link, a {
+    color: #f0f0f0; /* Enlace más claro */
+    text-decoration: none;
+}
+
+.link:hover, a:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+/* Etiquetas más claras */
+.label-text {
+    color: #dcdcdc; /* Más visible */
+}
+
+/* Estilo de los inputs */
+.form-control {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.form-control::placeholder {
+    color: #aaa;
+}
+
+/* Pie de página */
+footer {
+    flex-shrink: 0;
+}
