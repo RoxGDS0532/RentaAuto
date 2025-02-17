@@ -1,0 +1,65 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(220, 206, 206); /* Fondo gris claro */
+    color: white; /* Texto blanco */
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+    height: 100vh; /* Ocupa toda la pantalla */
+}
+
+/* Contenedor más grande */
+.login-container {
+    background-color: #1a1a1a; /* Fondo oscuro */
+    padding: 3rem;
+    border-radius: 20px; /* Esquinas redondeadas */
+    box-shadow: 0 8px 16px rgba(254, 253, 253, 0.2); /* Sombra clara */
+    width: 100%;
+    max-width: 500px; /* Más ancho */
+}
+
+/* Botón personalizado marrón */
+.custom-btn {
+    background-color: brown;
+    color: white;
+    padding: 12px;
+    font-size: 18px; /* Texto más grande */
+    border: none;
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+.custom-btn:hover {
+    background-color: #8b4513; /* Marrón más oscuro al pasar el mouse */
+}
+
+/* Títulos más claros */
+.title, .subtitle {
+    color: #f0f0f0; /* Color más claro */
+}
+
+/* Estilo del enlace */
+.link {
+    color: #f0f0f0; /* Enlace más claro */
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+/* Etiquetas más claras */
+.label-text {
+    color: #dcdcdc; /* Más visible */
+}
+
+/* Pie de página */
+footer {
+    flex-shrink: 0;
+}

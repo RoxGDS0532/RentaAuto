@@ -1,50 +1,103 @@
-<div class="wrapper black-bg">
-    <div class="wrapper">
-        <div *ngIf="!loading" class="body">
-            <img class="logo" src="../../../assets/img/key.png" alt="img login">
-            <h3>Registrar Usuario</h3>
-    
-            <div class="form-group">
-                <label for="usuario">Usuario</label>
-                <input type="text" id="usuario" [(ngModel)]="username" class="form-control" placeholder="Ingrese usuario">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RentAuto - Tu tienda de renta de autos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: brown;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">FASTER</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/historial">Tu Reserva</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/empresa">Empresa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auto">Flota</a>
+                    </li>
+                </ul>
             </div>
-    
-            <div class="form-group row">
-                <div class="col-md-6">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" [(ngModel)]="password" class="form-control" placeholder="Ingrese password">
-                </div>
-                <div class="col-md-6">
-                    <label for="confirmPassword">Repetir Password</label>
-                    <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" class="form-control" placeholder="Ingrese password de nuevo">
-                </div>
-            </div>
-    
-            
-            <div class="form-group">
-                <label for="usuario">Nombre</label>
-                <input type="text" id="nombre" [(ngModel)]="nombre" class="form-control" placeholder="Ingrese su Nombre">
-            </div>
-    
-            <div class="form-group">
-                <label for="usuario">Apellido</label>
-                <input type="text" id="apellido" [(ngModel)]="apellido" class="form-control" placeholder="Ingrese sus Apellidos">
-            </div>
-            <div class="form-group">
-                <label for="usuario">CorreoElectronico</label>
-                <input type="text" id="CorreoElectronico" [(ngModel)]="correoElectronico" class="form-control" placeholder="Ingrese un Correo Electronico">
-            </div>
-            <div class="form-group">
-                <label for="telefono">Número de Teléfono</label>
-                <input type="text" id="NumeroTelefono" [(ngModel)]="NumeroTelefono" class="form-control" placeholder="Ingrese un Número de Teléfono">
-            </div>
-            <div class="d-grid gap-2 mb-3">
-                <button type="button" (click)="addUser()" class="btn btn-primary btn-lg">Aceptar</button>
-            </div>
-            
-            <a routerLink="/login">Volver</a>
+        
         </div>
-        <app-spinner *ngIf="loading"></app-spinner>
+    </nav>
+    
+    <div class="wrapper">
+        <div class="sign-in-container">
+    
+            <div *ngIf="!loading" class="body">
+                <img class="logo" src="../../../assets/img/key.png" alt="img login">
+                <h3 class="mb-4 title">Registrar Usuario</h3>
+    
+                <div class="form-group">
+                    <label class="label-text" for="usuario">Usuario</label>
+                    <input type="text" id="usuario" [(ngModel)]="username" class="form-control" placeholder="Ingrese usuario">
+                </div>
+    
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label class="label-text" for="password">Password</label>
+                        <input type="password" id="password" [(ngModel)]="password" class="form-control" placeholder="Ingrese password">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="label-text" for="confirmPassword">Repetir Password</label>
+                        <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" class="form-control" placeholder="Ingrese password de nuevo">
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <label class="label-text" for="nombre">Nombre</label>
+                    <input type="text" id="nombre" [(ngModel)]="nombre" class="form-control" placeholder="Ingrese su Nombre">
+                </div>
+    
+                <div class="form-group">
+                    <label class="label-text" for="apellido">Apellido</label>
+                    <input type="text" id="apellido" [(ngModel)]="apellido" class="form-control" placeholder="Ingrese sus Apellidos">
+                </div>
+    
+                <div class="form-group">
+                    <label class="label-text" for="correoElectronico">Correo Electrónico</label>
+                    <input type="email" id="correoElectronico" [(ngModel)]="correoElectronico" class="form-control" placeholder="Ingrese un Correo Electrónico">
+                </div>
+    
+                <div class="form-group">
+                    <label class="label-text" for="telefono">Número de Teléfono</label>
+                    <input type="text" id="NumeroTelefono" [(ngModel)]="NumeroTelefono" class="form-control" placeholder="Ingrese un Número de Teléfono">
+                </div>
+    
+                <div class="d-grid gap-2 mb-3">
+                    <button type="button" (click)="addUser()" class="btn custom-btn btn-lg">Aceptar</button>
+                </div>
+    
+                <a class="nav-link active" aria-current="page" href="/login">Volver</a>
+            </div>
+    
+            <app-spinner *ngIf="loading"></app-spinner>
+    
+        </div>
     </div>
     
+    <footer class="bg-dark text-white text-center py-4">
+        <p>&copy; 2024 RentAuto - Todos los derechos reservados</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
     
