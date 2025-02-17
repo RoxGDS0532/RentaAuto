@@ -1,19 +1,20 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { LugarModel  } from '../models/datosModels';
 import { catchError, map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class LugarService {
 
   private domain: string = "http://localhost:3000"; 
-
+  
   constructor(private http: HttpClient) { }
 
-  getLugars() {
-    return this.http.get<LugarModel[]>(`${this.domain}/api/Lugar`).pipe(
+  getSucursales() {
+    return this.http.get<LugarModel[]>(`${this.domain}/api/sucursal`).pipe(
       map(res => res),
       catchError(this.handleError)
     );

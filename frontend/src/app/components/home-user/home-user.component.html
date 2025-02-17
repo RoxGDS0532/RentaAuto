@@ -26,6 +26,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/user/empresa">Empresa</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/empresa">Flota</a>
+                    </li>
                 </ul>
             </div>
             <button class="btn btn-outline-light" type="button">Login</button>
@@ -43,9 +46,7 @@
                         <label for="lugarS" class="form-label fs-6">Sucursal de Salida:</label>
                         <select class="form-control" id="lugarS">
                             <option value="">Selecciona una Sucursal</option>
-                            <option>Ciudad 1</option>
-                            <option>Ciudad 2</option>
-                            <option>Ciudad 3</option>
+                            <option *ngFor="let sucursal of sucursales" [value]="sucursal._id">{{ sucursal.nombre }}</option>
                         </select>
                     </div>
                     <div class="col-md-3">
@@ -60,9 +61,7 @@
                         <label for="lugarE" class="form-label fs-6">Sucursal de Entrega:</label>
                         <select class="form-control" id="lugarE">
                             <option value="">Selecciona una Sucursal</option>
-                            <option>Ciudad 1</option>
-                            <option>Ciudad 2</option>
-                            <option>Ciudad 3</option>
+                            <option *ngFor="let sucursal of sucursales" [value]="sucursal._id">{{ sucursal.nombre }}</option>
                         </select>
                     </div>
                     <div class="col-md-3">
