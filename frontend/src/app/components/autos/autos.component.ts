@@ -5,11 +5,12 @@ import { AutosService } from 'src/app/services/autos.service';
 import { LugarService } from 'src/app/services/lugar.service';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { BreadcrumbsComponent } from "../../shared/breadcrumbs/breadcrumbs.component";
-
+import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-autos',
   standalone: true,
-  imports: [CommonModule, NgbCarouselModule, BreadcrumbsComponent],
+  imports: [CommonModule, NgbCarouselModule, BreadcrumbsComponent,RouterModule],
   templateUrl: './autos.component.html',
   styleUrl: './autos.component.css'
 })
@@ -17,10 +18,13 @@ export class AutosComponent {
   auto: AutoModel[] = [];
   autosFiltrados: AutoModel[] = [];
   lugares: any[] = [];
+  breadcrumbs$ = this.breadcrumbService.breadcrumbs$;
 
   constructor(
       private autosService: AutosService,
-      private lugarService:LugarService) {
+      private lugarService:LugarService,
+      private breadcrumbService: BreadcrumbService
+    ) {
 }
 
   ngOnInit(): void {

@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { BreadcrumbsComponent } from "../../shared/breadcrumbs/breadcrumbs.component";
 
 @Component({
-  selector: 'app-promociones',
+  selector: 'app-confi-reserva',
   standalone: true,
   imports: [BreadcrumbsComponent],
-  templateUrl: './promociones.component.html',
-  styleUrl: './promociones.component.css'
+  templateUrl: './confi-reserva.component.html',
+  styleUrl: './confi-reserva.component.css'
 })
-export class PromocionesComponent {
+export class ConfiReservaComponent {
 
 }

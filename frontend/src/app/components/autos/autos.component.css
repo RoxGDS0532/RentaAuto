@@ -1,7 +1,5 @@
 
-body {
-    padding-top: 56px;
-  }
+
   
   .navbar {
     background-color: #A52A2A; 
@@ -23,10 +21,6 @@ body {
     border-color: #ffffff; 
   }
   
-  .navbar-toggler-icon {
-    background-color: #ffffff; 
-  }
-  
   .album .container {
     margin-top: 50px; 
   }
@@ -45,7 +39,7 @@ body {
   }
   
   .btn-reservar:hover {
-    background-color: #CC0000; /* Rojo más oscuro al pasar el cursor */
+    background-color: #CC0000; 
   }
   
   .search-box {
@@ -194,9 +188,32 @@ body {
     border-radius: 5px;
   }
   
-  
-  
-  .dropdown:hover .dropdown-content {display: flex;}
+  /* .dropdown:hover .dropdown-content {display: flex;} */
   
   .dropdown:hover .dropbtn {background-color: #8B0000;}
+  .carousel img {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .search-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  footer {
+    margin-top: 30px;
+  }
+
+  app-breadcrumbs {
+    display: block;
+    margin-top: 100px; 
+  }
   

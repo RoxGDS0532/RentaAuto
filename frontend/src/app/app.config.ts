@@ -19,6 +19,7 @@ import { AppComponent } from './app.component';
 import { importProvidersFrom } from '@angular/core';
 import { withComponentInputBinding } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbCarouselModule, } from '@ng-bootstrap/ng-bootstrap';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -43,5 +44,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(ReactiveFormsModule), 
     provideRouter([], withComponentInputBinding()),
     provideHttpClient(),
+
+    NgbCarouselModule
   ]
 };
