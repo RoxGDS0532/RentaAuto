@@ -65,26 +65,25 @@
 
     <div class="login-container">
       <div *ngIf="!loading" class="body">
-        <img class="logo" src="../../../assets/logo.png" alt="img login">
         <h3 class="mb-4 title">Login</h3>
   
         <form [formGroup]="loginForm" (ngSubmit)="login()">
-          <div class="form-floating mb-4">
-            <input type="text" formControlName="username" class="form-control" placeholder="Ingrese usuario">
-            <label>Usuario</label>
-          </div>
-  
-          <div class="form-floating mb-4">
-            <input type="password" formControlName="password" class="form-control" placeholder="Ingrese password">
-            <label>Password</label>
-          </div>
-  
-          <ngx-recaptcha2 *ngIf="isBrowser" [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
-  
-          <div class="d-grid gap-3 mt-4">
-            <button type="submit" class="btn custom-btn" [disabled]="loading">Aceptar</button>
-          </div>
-        </form>
+            <div class="form-floating mb-4">
+              <input type="text" formControlName="username" class="form-control" placeholder="Ingrese usuario">
+              <label>Usuario</label>
+            </div>
+    
+            <div class="form-floating mb-4">
+              <input type="password" formControlName="password" class="form-control" placeholder="Ingrese password">
+              <label>Password</label>
+            </div>
+    
+            <ngx-recaptcha2 *ngIf="isBrowser" [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
+    
+            <div class="d-grid gap-3 mt-4">
+              <button type="submit" class="btn custom-btn" [disabled]="loading">Aceptar</button>
+            </div>
+          </form>
   
         <p class="mt-4 subtitle">¿No tienes cuenta?
           <a href="/signIn" class="nav-link active">Registrarse</a>
@@ -95,11 +94,6 @@
     </div>
 
   </div>
-  
-  
-  <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2023 Terreneitor. Todos los derechos reservados.</p>
-  </footer>
 
 </div>
 

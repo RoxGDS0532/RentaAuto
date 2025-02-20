@@ -4,8 +4,9 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 // Función para iniciar sesión de usuario
+// Función para iniciar sesión de usuario
 exports.loginUser = async (req, res) => {
-  const { username, password, recaptchaToken } = req.body; // Asegúrate de enviar el token de reCAPTCHA desde el frontend
+  const { username, password, recaptchaToken } = req.body;
 
   try {
     // Verificar el token de reCAPTCHA con Google
@@ -14,28 +15,28 @@ exports.loginUser = async (req, res) => {
       null,
       {
         params: {
-          secret: '6Lcdg90qAAAAABnM91XshaND3q7iFgLU1Y5TVTgQ', // Tu clave secreta de reCAPTCHA
+          secret: '6Lcdg90qAAAAABnM91XshaND3q7iFgLU1Y5TVTgQ',
           response: recaptchaToken,
         },
       }
     );
 
-    // Si la verificación de reCAPTCHA falla
     if (!response.data.success) {
       return res.status(400).json({ msg: 'Error de verificación de reCAPTCHA' });
     }
 
-    // Continuar con la autenticación del usuario
+    // Buscar el usuario
     const user = await User.findOne({ username });
     if (!user) {
       return res.status(400).json({ msg: 'Usuario no encontrado' });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
+    // Comparar las contraseñas directamente (sin encriptación)
+    if (user.password !== password) {
       return res.status(401).json({ msg: 'Contraseña incorrecta' });
     }
 
+    // Generar el token
     const token = jwt.sign({ id: user._id, username: user.username, rol: user.rol }, process.env.SECRET_KEY, {
       expiresIn: '2h',
     });
@@ -47,6 +48,7 @@ exports.loginUser = async (req, res) => {
     res.status(500).json({ msg: 'Error al iniciar sesión', error });
   }
 };
+
 
 // Función para crear un nuevo usuario
 exports.newUser = async (req, res) => {

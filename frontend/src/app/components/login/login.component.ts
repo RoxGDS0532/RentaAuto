@@ -75,23 +75,23 @@ export class LoginComponent implements OnInit {
     const user: User = { username, password };
 
     this.loading = true;
-    this.toastr.info('Iniciando sesión...', 'Cargando');  // Mensaje informativo
+    this.toastr.info('Iniciando sesión...', 'Cargando');  // Mensaje informativo
 
     this._userService.login(user).subscribe({
       next: (token) => {
-        console.log(token);  // Verifica lo que está devolviendo la API
+        console.log(token);  // Verifica lo que está devolviendo la API
 
         if (token) {
           localStorage.setItem('token', token);
           this.usergo.setUserName(username);
 
-          // Mostrar la notificación de éxito
-          this.toastr.success('Inicio de sesión exitoso', 'Bienvenido!');
+          // Mostrar la notificación de éxito
+          this.toastr.success('Inicio de sesión exitoso', 'Bienvenido!');
 
-          // Redirige a la página deseada
+          // Redirige a la página deseada
           this.router.navigate(['/']);
         } else {
-          this.toastr.error('No se recibió token', 'Error');
+          this.toastr.error('No se recibió token', 'Error');
         }
       },
       error: (error: HttpErrorResponse) => {
@@ -99,9 +99,9 @@ export class LoginComponent implements OnInit {
         if (error.status === 404) {
           this.toastr.error('El usuario no existe', 'Error');
         } else if (error.status === 400) {
-          this.toastr.error('Usuario o contraseña incorrectos', 'Error');
+          this.toastr.error('Usuario o contraseña incorrectos', 'Error');
         } else {
-          this.toastr.error('Ocurrió un error inesperado', 'Error');
+          this.toastr.error('Ocurrió un error inesperado', 'Error');
         }
         this.loading = false;
       }
