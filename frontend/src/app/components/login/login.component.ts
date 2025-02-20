@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { User } from 'src/interfaces/user';
 import { UserService } from 'src/app/services/user.service';
 import { CommonModule } from '@angular/common';
@@ -24,9 +24,10 @@ import { BreadcrumbsComponent } from "../../shared/breadcrumbs/breadcrumbs.compo
     CommonModule,
     SpinnerComponent,
     NgxCaptchaModule,
-    ToastrModule
+    ToastrModule,
+    BreadcrumbsComponent,
+    FormsModule
   ],
-  imports: [FormsModule, CommonModule, SpinnerComponent, BreadcrumbsComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
