@@ -9,12 +9,13 @@ import { UserService } from 'src/app/services/user.service';
 import { CommonModule } from '@angular/common';
 import { UserglobalService } from 'src/app/services/userglobal.service';
 import { SpinnerComponent } from '../../shared/spinner/spinner.component';
+import { BreadcrumbsComponent } from "../../shared/breadcrumbs/breadcrumbs.component";
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule,SpinnerComponent],
+  imports: [FormsModule, CommonModule, SpinnerComponent, BreadcrumbsComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 

@@ -1,3 +1,4 @@
+<!-- 
 <div class="container mt-4">
   <div class="row">
     <div class="col-sm-12">
@@ -7,4 +8,44 @@
       </ol>
     </div>
   </div>
-</div>
+</div> -->
+
+
+
+<!-- <div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-12">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a class="text-danger" href="/">Home</a>
+        </li>
+        <li
+          *ngFor="let breadcrumb of breadcrumbs; let last = last"
+          class="breadcrumb-item"
+          [class.active]="last"
+        >
+          <a *ngIf="!last; else lastBreadcrumb" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+          <ng-template #lastBreadcrumb>{{ breadcrumb.label }}</ng-template>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div> -->
+
+
+ <div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-12">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="text-danger" routerLink="/">Home</a></li>
+        <li *ngFor="let breadcrumb of breadcrumbs; let last = last" 
+            class="breadcrumb-item" 
+            [class.active]="last">
+          <a *ngIf="!last; else lastBreadcrumb" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+          <ng-template #lastBreadcrumb>{{ breadcrumb.label }}</ng-template>
+        </li>        
+      </ol>
+    </div>
+  </div>
+</div> 
+

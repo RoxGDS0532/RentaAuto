@@ -1,7 +1,5 @@
 
-body {
-    padding-top: 56px;
-  }
+
   
   .navbar {
     background-color: #A52A2A; 
@@ -214,4 +212,8 @@ body {
     margin-top: 30px;
   }
 
+  app-breadcrumbs {
+    display: block;
+    margin-top: 100px; 
+  }
   
