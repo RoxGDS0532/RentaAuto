@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: brown;">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">FASTER</a>
@@ -50,7 +49,7 @@
           <div id="carousel{{ auto.marca }}" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div *ngFor="let imagen of auto.imagenes; let i = index" class="carousel-item" [class.active]="i === 0">
-                <img [src]="imagen" class="d-block w-100" alt="Imagen del auto">
+                <img style="width: 100%; height: 100%;" [src]="imagen" class="d-block w-100" alt="Imagen del auto">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-slide="prev">
@@ -80,7 +79,6 @@
       </div>
     </div>
   </div>
-
   <!-- Footer -->
   <footer class="bg-dark text-white text-center py-4">
     <p>&copy; 2025 RentAuto - Todos los derechos reservados</p>

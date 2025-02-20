@@ -6,7 +6,7 @@ import { LugarService } from 'src/app/services/lugar.service';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { BreadcrumbsComponent } from "../../shared/breadcrumbs/breadcrumbs.component";
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-autos',
   standalone: true,
@@ -23,7 +23,9 @@ export class AutosComponent {
   constructor(
       private autosService: AutosService,
       private lugarService:LugarService,
-      private breadcrumbService: BreadcrumbService
+      private breadcrumbService: BreadcrumbService,
+      private activatedRoute:ActivatedRoute,
+      private router: Router
     ) {
 }
 
@@ -59,8 +61,6 @@ export class AutosComponent {
       }
     );
   }
-  
-  
 }
 
 

@@ -1,55 +1,51 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { filter,map } from 'rxjs/operators';
-import { ActivatedRoute, ActivationEnd, NavigationEnd, Router, RouterLink, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { filter, map } from 'rxjs/operators';
+import { ActivationEnd, Router } from '@angular/router';
 
-interface Breadcrumb {
-  label: string;
-  url: string;
-}
 @Component({
   selector: 'app-breadcrumbs',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [],
   templateUrl: './breadcrumbs.component.html',
   styleUrl: './breadcrumbs.component.css'
 })
-export class BreadcrumbsComponent implements OnInit, OnDestroy{
-  public breadcrumbs: Breadcrumb[] = [];
-  private subscription!: Subscription;
+export class BreadcrumbsComponent implements OnDestroy {
+  public titulo?: string;
+  public tituloSubs$?: Subscription;
+  public breadcrumbs: { titulo: string, url: string }[] = [];
 
-  constructor(private router:Router , private activatedRoute: ActivatedRoute) { }
-
-  ngOnInit(): void {
-    this.subscription = this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.breadcrumbs = this.createBreadcrumbs(this.activatedRoute.root);
-        console.log('Solo rutas padre:', JSON.stringify(this.breadcrumbs, null, 2));
-      });
+  constructor(private router: Router) { 
+    this.tituloSubs$ = this.getArgumentos().subscribe(({ titulo, breadcrumbs }) => {
+      this.titulo = titulo;
+      this.breadcrumbs = breadcrumbs.reverse();
+      document.title = `AdminLte - ${titulo}`;
+    });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.tituloSubs$?.unsubscribe();
   }
 
-  private createBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: Breadcrumb[] = []): Breadcrumb[] {
-    const children: ActivatedRoute[] = route.children;
+  getArgumentos() {
+    return this.router.events.pipe(
+      filter((event: any) => event instanceof ActivationEnd),
+      filter((event: any) => event.snapshot.firstChild === null),
+      map((event: ActivationEnd) => {
+        let breadcrumbs = this.getBreadcrumbs(event.snapshot).reverse();
+        return { titulo: event.snapshot.data['titulo'], breadcrumbs };
+      })
+    );
+  }
 
-    for (let child of children) {
-      if (!child.snapshot.data['titulo']) {
-        return this.createBreadcrumbs(child, url, breadcrumbs);
-      }
-
-      const routeURL = child.snapshot.url.map(segment => segment.path).join('/');
-      const nextUrl = `${url}/${routeURL}`;
-
-      breadcrumbs.push({ label: child.snapshot.data['titulo'], url: nextUrl });
-
-      return this.createBreadcrumbs(child, nextUrl, breadcrumbs);
+  private getBreadcrumbs(snapshot: any, url: string = '', breadcrumbs: { titulo: string, url: string }[] = []): { titulo: string, url: string }[] {
+    if (snapshot.parent) {
+      breadcrumbs = this.getBreadcrumbs(snapshot.parent, url, breadcrumbs);
     }
-
+    const newUrl = `${url}/${snapshot.url.map((segment: any) => segment.path).join('/')}`;
+    if (snapshot.data['titulo']) {
+      breadcrumbs.push({ titulo: snapshot.data['titulo'], url: newUrl });
+    }
     return breadcrumbs;
   }
 }

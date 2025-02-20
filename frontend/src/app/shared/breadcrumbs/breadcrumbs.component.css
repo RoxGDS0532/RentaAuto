@@ -1,6 +1,12 @@
  .breadcrumb-item.active {
     color: darkred !important;
   }
+
+  a{
+    color: #A52A2A;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
   
  .breadcrumb{
     background-color: rgb(248, 243, 243);
