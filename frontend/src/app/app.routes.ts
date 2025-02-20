@@ -9,7 +9,7 @@ import { ConfiReservaComponent } from './components/confi-reserva/confi-reserva.
 
 export const routes: Routes = [
     { path: '', component: HomeUserComponent, data: { titulo: 'Home' } },
-    { path: 'auto', component: AutosComponent, data: { titulo: 'Flota' }, children: [
+    { path: 'auto', component: AutosComponent, data: { titulo: 'Auto' }, children: [
         { path: 'confi', component: ConfiReservaComponent, data: { titulo: 'Confirmar Reserva' } }
       ]},
     { path: 'login', component: LoginComponent, data: { titulo: 'Login' } },
