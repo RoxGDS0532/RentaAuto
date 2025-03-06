@@ -1,24 +1,70 @@
+/* Estilos generales */
 .error-container {
     text-align: center;
     margin-top: 100px;
-  }
-  
-  .error-container h1 {
-    font-size: 5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animación de carretera */
+.road-animation {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: url('https://i.imgur.com/1l6V8tj.gif') repeat-x;
+    background-size: cover;
+    animation: moveRoad 3s linear infinite;
+}
+
+/* Animación de la carretera */
+@keyframes moveRoad {
+    from {
+        background-position: 0;
+    }
+    to {
+        background-position: -1000px;
+    }
+}
+
+/* Código de error animado */
+.error-code {
+    font-size: 6rem;
+    font-weight: bold;
     color: #d9534f;
-  }
-  
-  .error-container p {
+    animation: brakeEffect 1.5s ease-in-out infinite alternate;
+}
+
+/* Animación de frenado */
+@keyframes brakeEffect {
+    0% { transform: scale(1); color: #d9534f; }
+    100% { transform: scale(1.1); color: #ff3333; }
+}
+
+/* Mensaje de error */
+.error-message {
     font-size: 1.5rem;
-  }
-  
-  .error-container a {
-    text-decoration: none;
+    margin-top: 20px;
+    color: #555;
+}
+
+/* Botón estilizado */
+.back-home {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
     font-size: 1.2rem;
-    color: #007bff;
-  }
-  
-  .error-container a:hover {
-    color: #0056b3;
-  }
-  
+    font-weight: bold;
+    color: #fff;
+    background: #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover del botón */
+.back-home:hover {
+    background: #0056b3;
+    transform: scale(1.1);
+}

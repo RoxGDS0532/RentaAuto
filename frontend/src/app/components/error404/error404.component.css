@@ -1,21 +1,64 @@
+/* Estilos generales */
 .error-page {
     text-align: center;
-    padding: 50px;
-    font-size: 20px;
-  }
-  
-  .error-page h1 {
-    font-size: 100px;
-    color: #800000; /* Vino */
-  }
-  
-  .error-page p {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .error-page .btn {
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-  
+    margin-top: 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Emoji de auto animado */
+.car-animation {
+    font-size: 4rem; /* Tamaño grande */
+    position: absolute;
+    bottom: 20px;
+    right: -100px; /* Empieza fuera de la pantalla a la derecha */
+    animation: driveLeft 4s infinite linear; /* Se mueve hacia la izquierda */
+}
+
+/* Animación del auto moviéndose de derecha a izquierda */
+@keyframes driveLeft {
+    0% { right: -100px; }
+    50% { right: 50%; transform: rotate(-5deg); }
+    100% { right: 110%; transform: rotate(5deg); }
+}
+
+/* Código de error con efecto */
+.error-code {
+    font-size: 6rem;
+    font-weight: bold;
+    color: #800000;
+    animation: fadeOut 1.5s ease-in-out infinite alternate;
+}
+
+/* Animación de desaparición */
+@keyframes fadeOut {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0.5; transform: scale(1.1); }
+}
+
+/* Mensaje de error */
+.error-message {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    color: #555;
+}
+
+/* Botón estilizado */
+.back-home {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background: #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover del botón */
+.back-home:hover {
+    background: #0056b3;
+    transform: scale(1.1);
+}
