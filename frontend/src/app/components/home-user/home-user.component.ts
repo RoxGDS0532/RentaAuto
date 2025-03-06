@@ -5,10 +5,11 @@ import { LugarService } from '../../services/lugar.service';
 import { Router } from '@angular/router';
 import { BreadcrumbsComponent } from '../../shared/breadcrumbs/breadcrumbs.component';
 import { RouterLink } from '@angular/router';
+import { FooterComponent } from "../footer/footer.component";
 @Component({
   selector: 'app-home-user',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, RouterLink, BreadcrumbsComponent],
+  imports: [CommonModule, HttpClientModule, RouterLink, BreadcrumbsComponent, FooterComponent],
   templateUrl: './home-user.component.html',
   styleUrls: ['./home-user.component.css']
 })
