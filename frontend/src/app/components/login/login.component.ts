@@ -26,7 +26,8 @@ import { BreadcrumbsComponent } from "../../shared/breadcrumbs/breadcrumbs.compo
     NgxCaptchaModule,
     ToastrModule,
     BreadcrumbsComponent,
-    FormsModule
+    FormsModule,
+    
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
@@ -44,7 +45,8 @@ export class LoginComponent implements OnInit {
     private _userService: UserService,
     private router: Router,
     private usergo: UserglobalService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    
   ) { 
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
@@ -75,7 +77,8 @@ export class LoginComponent implements OnInit {
     const user: User = { username, password };
 
     this.loading = true;
-    this.toastr.info('Iniciando sesión...', 'Cargando');  // Mensaje informativo
+    this.toastr.info('Iniciando sesión...', 'Cargando');
+      // Mensaje informativo
 
     this._userService.login(user).subscribe({
       next: (token) => {
