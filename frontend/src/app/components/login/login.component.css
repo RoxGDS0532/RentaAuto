@@ -59,10 +59,6 @@ html, body {
     color: #dcdcdc; /* Más visible */
 }
 
-/* Pie de página */
-footer {
-    flex-shrink: 0;
-}
 .navbar {
     background-color: #A52A2A; 
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); 

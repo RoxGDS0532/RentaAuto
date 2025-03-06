@@ -8,10 +8,11 @@ import { BreadcrumbsComponent } from "../../shared/breadcrumbs/breadcrumbs.compo
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { FooterComponent } from "../footer/footer.component";
+import { NavbarComponent } from "../navbar/navbar.component";
 @Component({
   selector: 'app-autos',
   standalone: true,
-  imports: [CommonModule, NgbCarouselModule, BreadcrumbsComponent, RouterModule, FooterComponent],
+  imports: [CommonModule, NgbCarouselModule, BreadcrumbsComponent, RouterModule, FooterComponent, NavbarComponent],
   templateUrl: './autos.component.html',
   styleUrl: './autos.component.css'
 })

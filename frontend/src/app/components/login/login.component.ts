@@ -14,6 +14,7 @@ import { Inject, PLATFORM_ID } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { BreadcrumbsComponent } from "../../shared/breadcrumbs/breadcrumbs.component";
 import { FooterComponent } from "../footer/footer.component";
+import { NavbarComponent } from "../navbar/navbar.component";
 
 
 @Component({
@@ -28,7 +29,8 @@ import { FooterComponent } from "../footer/footer.component";
     ToastrModule,
     BreadcrumbsComponent,
     FormsModule,
-    FooterComponent
+    FooterComponent,
+    NavbarComponent
 ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
