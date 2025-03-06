@@ -44,7 +44,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(ReactiveFormsModule), 
     provideRouter([], withComponentInputBinding()),
     provideHttpClient(),
-
+   
     NgbCarouselModule
   ]
 };

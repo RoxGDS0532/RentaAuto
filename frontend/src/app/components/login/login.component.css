@@ -78,3 +78,13 @@ html, body {
   .navbar-toggler {
     border-color: #ffffff; 
   }
+
+
+  
+  .toast-top-right {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+  
