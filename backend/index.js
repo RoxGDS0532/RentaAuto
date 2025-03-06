@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');  // Importamos el paquete cors
 const conectarDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
+const Auto = require('./models/Auto');  // Modelo de Auto
+const Sucursal = require('./models/Sucursal'); 
 
 // Creamos el servidor
 const app = express();
@@ -23,6 +25,37 @@ app.use(express.json());
 app.use('/api/auto', require('./routes/auto'));
 app.use('/api/sucursal', require('./routes/sucursal'));
 app.use('/api/users', userRoutes);
+app.get('/api/buscar', async (req, res) => {
+  try {
+    if (!req.query.query) {
+      return res.status(400).json({ error: 'Se requiere un parámetro de búsqueda' });
+    }
+
+    const query = req.query.query.toLowerCase();
+
+    // Buscar en la colección de Autos y Sucursales
+    const autos = await Auto.find({
+      $or: [
+        { nombre: { $regex: query, $options: 'i' } },
+        { descripcion: { $regex: query, $options: 'i' } }
+      ]
+    });
+
+    const sucursales = await Sucursal.find({
+      $or: [
+        { nombre: { $regex: query, $options: 'i' } },
+        { descripcion: { $regex: query, $options: 'i' } }
+      ]
+    });
+
+    const resultados = [...autos, ...sucursales];
+
+    res.json(resultados);
+  } catch (error) {
+    console.error('Error al buscar datos:', error);
+    res.status(500).json({ error: 'Error en el servidor' });
+  }
+});
 
 // Arrancamos el servidor
 app.listen(3000, () => {

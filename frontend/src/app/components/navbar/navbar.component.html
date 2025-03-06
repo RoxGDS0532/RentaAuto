@@ -20,8 +20,34 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/auto">Auto</a>
                 </li>
+
+                <form class="d-flex ms-auto" (submit)="onSearch(); $event.preventDefault()">
+                    <input class="form-control" type="search" placeholder="Buscar..." [(ngModel)]="searchTerm" name="searchTerm" (input)="onSearch()" />
+                    <button class="btn btn-outline-light" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
             </ul>
             <a class="nav-link active ms-auto" href="/login">Login</a>
         </div>
     </div>
 </nav>
+
+<!-- Mostrar los resultados de la búsqueda -->
+<div *ngIf="searchResults.length > 0" class="search-results">
+    <ul class="list-group">
+        <li *ngFor="let result of searchResults" class="list-group-item">
+            <a [routerLink]="result.url">
+                <h5>{{ result.nombre }}</h5>
+                <p>{{ result.descripcion }}</p>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Mostrar mensaje si no hay resultados -->
+<div *ngIf="searchResults.length === 0 && searchTerm">
+    <p>No se encontraron resultados para "{{ searchTerm }}"</p>
+</div>
+
+
