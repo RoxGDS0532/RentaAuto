@@ -13,6 +13,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { BreadcrumbsComponent } from "../../shared/breadcrumbs/breadcrumbs.component";
+import { FooterComponent } from "../footer/footer.component";
 
 
 @Component({
@@ -26,8 +27,9 @@ import { BreadcrumbsComponent } from "../../shared/breadcrumbs/breadcrumbs.compo
     NgxCaptchaModule,
     ToastrModule,
     BreadcrumbsComponent,
-    FormsModule
-  ],
+    FormsModule,
+    FooterComponent
+],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
