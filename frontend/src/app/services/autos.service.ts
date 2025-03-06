@@ -12,12 +12,15 @@ export class AutosService {
 
   constructor(private http: HttpClient) { }
 
-  getAutos() {
-    return this.http.get<AutoModel[]>(`${this.domain}/api/auto`).pipe(
+  
+
+  getAutos(categoria: string = '') {
+    return this.http.get<AutoModel[]>(`${this.domain}/api/auto?categoria=${categoria}`).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
+  
 
   updateCantidadAuto(autoId: string, cantidad: number) {
     return this.http.put(`${this.domain}/api/auto/${autoId}`, { cantidad }).pipe(

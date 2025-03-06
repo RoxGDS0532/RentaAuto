@@ -1,0 +1,24 @@
+.error-container {
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  .error-container h1 {
+    font-size: 5rem;
+    color: #d9534f;
+  }
+  
+  .error-container p {
+    font-size: 1.5rem;
+  }
+  
+  .error-container a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #007bff;
+  }
+  
+  .error-container a:hover {
+    color: #0056b3;
+  }
+  

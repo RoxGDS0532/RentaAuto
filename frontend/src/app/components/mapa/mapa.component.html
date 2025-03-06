@@ -35,7 +35,7 @@
             margin: 0 20px;
             position: relative;
         }
-        .tree li::before, .tree li::after {
+        .tree li::before {
             content: '';
             position: absolute;
             top: 0;
@@ -44,10 +44,7 @@
             width: 50%;
             height: 20px;
         }
-        .tree li::after {
-            left: auto;
-            right: 50%;
-        }
+        
         .tree li a {
             display: inline-block;
             padding: 10px 15px;
@@ -56,10 +53,18 @@
             border-radius: 5px;
             text-decoration: none;
         }
-        .tree li a:hover {
-            background: #dcdcdc;
-            color: #800000;
+        
+        /* Estilos para conectar los nodos inferiores horizontalmente */
+        
+        .tree li ul::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 25%;
+            width: 50%;
+            border-top: 2px solid #800000;
         }
+        
     </style>
 </head>
 <body>
