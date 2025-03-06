@@ -1,0 +1,106 @@
+  /*----------------------------------------------*/
+  .footer-brand {
+    background-color: #000000; /* Color rojo */
+    padding: 5px;
+    text-align: center;
+    color: white;
+  }
+  
+  .footer-brand .brand {
+    font-size: 24px;
+    font-weight: bold;
+  }
+/* Estilos generales */
+.footer {
+  background: linear-gradient(to right, #050404, #000000); /* Degradado rojo oscuro */
+  color: #fff;
+  padding: 30px 0;
+  text-align: justify;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px; /* Tamaño de fuente más pequeño y uniforme */
+}
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Secciones */
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin: 10px;
+}
+
+/* Títulos */
+.brand {
+  color: white;
+  font-size: 18px; /* Más pequeño pero destacable */
+  font-weight: bold;
+}
+
+h3 {
+  color: #fff;
+  font-size: 16px; /* Tamaño uniforme y formal */
+  border-bottom: 1px solid #fff;
+  display: inline-block;
+  padding-bottom: 3px;
+}
+
+/* Estilos de enlaces */
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin: 6px 0;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  font-size: 14px; /* Tamaño uniforme */
+  transition: color 0.3s ease-in-out;
+}
+
+.link i {
+  margin-right: 6px;
+  color: #fff;
+}
+
+.link:hover {
+  color: #d10e0e;
+}
+
+/* Redes sociales */
+.social-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.social-link {
+  color: white;
+  font-size: 18px; /* Tamaño moderado */
+  transition: transform 0.3s ease-in-out, color 0.3s;
+}
+
+.social-link:hover {
+  color: #d10e0e;
+  transform: scale(1.1);
+}
+
+/* Pie de página */
+.footer-bottom {
+  margin-top: 5px;
+  border-top: 1px solid #fff;
+  padding-top: 10px;
+  align-items: center;
+  font-size: 12px; 
+}

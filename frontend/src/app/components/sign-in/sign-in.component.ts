@@ -9,11 +9,12 @@ import { UserService } from 'src/app/services/user.service';
 import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 import { Usuario } from 'src/interfaces/usuario';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [FormsModule, CommonModule,SpinnerComponent ],
+  imports: [FormsModule, CommonModule, SpinnerComponent, FooterComponent],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css',
 
