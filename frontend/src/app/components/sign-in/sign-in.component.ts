@@ -10,11 +10,12 @@ import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 import { Usuario } from 'src/interfaces/usuario';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "../footer/footer.component";
+import { NavbarComponent } from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [FormsModule, CommonModule, SpinnerComponent, FooterComponent],
+  imports: [FormsModule, CommonModule, SpinnerComponent, FooterComponent, NavbarComponent],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css',
 

@@ -6,10 +6,14 @@ import { Router } from '@angular/router';
 import { BreadcrumbsComponent } from '../../shared/breadcrumbs/breadcrumbs.component';
 import { RouterLink } from '@angular/router';
 import { FooterComponent } from "../footer/footer.component";
+import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from "../navbar/navbar.component";
+
+
 @Component({
   selector: 'app-home-user',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, RouterLink, BreadcrumbsComponent, FooterComponent],
+  imports: [CommonModule, RouterLink, FooterComponent, FormsModule, NavbarComponent],
   templateUrl: './home-user.component.html',
   styleUrls: ['./home-user.component.css']
 })
