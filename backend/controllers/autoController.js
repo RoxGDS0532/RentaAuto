@@ -18,6 +18,11 @@ exports.createAuto = async (req, res) => {
 
 exports.getAutos = async (req, res) => {
     try {
+        // Simulación de error 500 forzado
+        if (req.query.categoria === 'error500') {
+            throw new Error('Simulación de error 500');
+        }
+
         const autos = await Auto.find({});
         res.json(autos);
     } catch (error) {
@@ -25,6 +30,7 @@ exports.getAutos = async (req, res) => {
         res.status(500).send('Error en el server');
     }
 }
+
 
 exports.updateAuto = async (req, res) => {
     try {
