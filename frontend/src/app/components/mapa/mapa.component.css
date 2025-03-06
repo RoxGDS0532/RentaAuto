@@ -1,0 +1,93 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #000;
+    margin: 0;
+    padding: 0;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  nav {
+    background-color: #800000; /* Vino */
+  }
+  
+  nav .navbar-brand {
+    color: #fff;
+  }
+  
+  nav .navbar-nav .nav-link {
+    color: #fff;
+  }
+  
+  nav .navbar-nav .nav-link.active {
+    color: #dcdcdc; /* Gris claro */
+  }
+  
+  nav .navbar-toggler {
+    border: none;
+    background-color: transparent;
+  }
+  
+  nav .navbar-toggler-icon {
+    background-color: #fff;
+  }
+  
+  /* Sitemap Styles */
+  .sitemap {
+    background-color: #fff;
+    padding: 20px;
+  }
+  
+  .primaryNav {
+    background-color: #000; /* Negro */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .primaryNav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .primaryNav ul li {
+    padding: 12px;
+    margin: 5px 0;
+    background-color: #800000; /* Vino */
+    border-radius: 4px;
+  }
+  
+  .primaryNav ul li a {
+    color: #fff;
+    font-size: 16px;
+    display: block;
+    text-transform: uppercase;
+    padding: 5px;
+  }
+  
+  .primaryNav ul li:hover {
+    background-color: #dcdcdc; /* Gris claro */
+  }
+  
+  .primaryNav ul li a:hover {
+    color: #800000; /* Vino */
+  }
+  
+  /* Footer Styles */
+  app-footer {
+    background-color: #800000; /* Vino */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  app-footer a {
+    color: #fff;
+    text-decoration: none;
+  }
+  

@@ -6,7 +6,7 @@ import { AutosComponent } from './components/autos/autos.component';
 import { SignInComponent } from'./components/sign-in/sign-in.component'
 import { ConfiReservaComponent } from './components/confi-reserva/confi-reserva.component';
 import { PromocionesComponent } from './components/promociones/promociones.component';
-
+import { MapaComponent } from './components/mapa/mapa.component';
 
 export const routes: Routes = [
     { path: '', component: HomeUserComponent, data: { titulo: 'Home' } },
@@ -15,5 +15,6 @@ export const routes: Routes = [
       ]},
     { path: 'login', component: LoginComponent, data: { titulo: 'Login' } },
     { path: 'signIn', component: SignInComponent, data: { titulo: 'Registro' } },
-    { path: 'promociones',  component: PromocionesComponent, data: { titulo: 'Promociones'}}
+    { path: 'promociones',  component: PromocionesComponent, data: { titulo: 'Promociones'}},
+    { path: 'mapa', component: MapaComponent, data: { titulo: 'Mapa del sitio' }}
 ];
