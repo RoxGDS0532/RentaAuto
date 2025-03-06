@@ -48,14 +48,27 @@ app.get('/api/buscar', async (req, res) => {
       ]
     });
 
-    const resultados = [...autos, ...sucursales];
+    let resultados = [...autos, ...sucursales];
 
-    res.json(resultados);
+    // Palabras clave para mostrar las opciones
+    const sugerencias = [];
+
+    if (query.includes("autos disponibles") || query.includes("coches disponibles")) {
+      sugerencias.push({ mensaje: "Autos Disponibles" });
+    }
+
+    if (query.includes("sucursales") || query.includes("ubicaciones")) {
+      sugerencias.push({ mensaje: "Sucursales" });
+    }
+
+    res.json({ resultados, sugerencias });
+
   } catch (error) {
     console.error('Error al buscar datos:', error);
     res.status(500).json({ error: 'Error en el servidor' });
   }
 });
+
 
 // Arrancamos el servidor
 app.listen(3000, () => {
