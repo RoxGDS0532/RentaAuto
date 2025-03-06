@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa del Sitio - FASTER</title>
+    <link rel="stylesheet" href="./mapa.component.css">
+    <style>
+        .sitemap {
+            text-align: center;
+            padding: 20px;
+        }
+        .tree {
+            display: flex;
+            justify-content: center;
+        }
+        .tree ul {
+            position: relative;
+            padding-top: 20px;
+            list-style: none;
+            text-align: center;
+        }
+        .tree ul::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            border-left: 2px solid #800000;
+            width: 0;
+            height: 20px;
+        }
+        .tree li {
+            display: inline-block;
+            text-align: center;
+            margin: 0 20px;
+            position: relative;
+        }
+        .tree li::before, .tree li::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            border-top: 2px solid #800000;
+            width: 50%;
+            height: 20px;
+        }
+        .tree li::after {
+            left: auto;
+            right: 50%;
+        }
+        .tree li a {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #800000;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .tree li a:hover {
+            background: #dcdcdc;
+            color: #800000;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #800000;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">FASTER</a>
+        </div>
+    </nav>
+
+    <app-breadcrumbs></app-breadcrumbs>
+
+    <section class="sitemap">
+        <h2>Mapa del Sitio</h2>
+        <div class="tree">
+            <ul>
+                <li>
+                    <a href="/">Inicio</a>
+                    <ul>
+                        <li><a href="/user/historial">Tu Reserva</a></li>
+                        <li><a href="/user/empresa">Empresa</a></li>
+                        <li><a href="/auto">Auto</a></li>
+                        <li><a href="/login">Login</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <app-footer></app-footer>
+</body>
+</html>

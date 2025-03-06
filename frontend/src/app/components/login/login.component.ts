@@ -28,12 +28,10 @@ import { FooterComponent } from "../footer/footer.component";
     ToastrModule,
     BreadcrumbsComponent,
     FormsModule,
+    FooterComponent
 
     
   ],
-
-    FooterComponent
-
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
