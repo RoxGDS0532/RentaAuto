@@ -1,7 +1,8 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, PLATFORM_ID } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { ActivationEnd, Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -15,12 +16,13 @@ export class BreadcrumbsComponent implements OnDestroy {
   public tituloSubs$?: Subscription;
   public breadcrumbs: { titulo: string, url: string }[] = [];
 
-  constructor(private router: Router) { 
+  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: Object) { 
     this.tituloSubs$ = this.getArgumentos().subscribe(({ titulo, breadcrumbs }) => {
       this.titulo = titulo;
       this.breadcrumbs = breadcrumbs.reverse();
-      document.title = `AdminLte - ${titulo}`;
-    });
+      if (isPlatformBrowser(this.platformId)) {
+        document.title = `AdminLte - ${titulo}`;
+      }    });
   }
 
   ngOnDestroy(): void {

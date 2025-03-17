@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { AutoModel } from 'src/app/models/datosModels';
+import { Component, OnInit } from '@angular/core';
+import { AutoModel, ReservaModel } from 'src/app/models/datosModels';
 import { AutosService } from 'src/app/services/autos.service';
 import { LugarService } from 'src/app/services/lugar.service';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
@@ -9,7 +9,9 @@ import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { FooterComponent } from "../footer/footer.component";
 import { NavbarComponent } from "../navbar/navbar.component";
-import { ErrorService } from 'src/app/services/error.service'; // Importa tu servicio de errores
+import { ErrorService } from 'src/app/services/error.service'; 
+import { ReservaService } from 'src/app/services/reserva.service';
+
 
 @Component({
   selector: 'app-autos',
@@ -18,10 +20,11 @@ import { ErrorService } from 'src/app/services/error.service'; // Importa tu ser
   templateUrl: './autos.component.html',
   styleUrl: './autos.component.css'
 })
-export class AutosComponent {
+export class AutosComponent implements OnInit{
   auto: AutoModel[] = [];
   autosFiltrados: AutoModel[] = [];
   lugares: any[] = [];
+  reserva: any;
   breadcrumbs$ = this.breadcrumbService.breadcrumbs$;
 
   constructor(
@@ -30,14 +33,16 @@ export class AutosComponent {
     private breadcrumbService: BreadcrumbService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private errorService: ErrorService // Inyecta el servicio de error
-  ) {}
+    private reservaService: ReservaService,
+    private errorService: ErrorService 
+  ) {
+  }
 
   ngOnInit(): void {
     this.obtenerDatosAutos();
     this.cargarLugares();
-  }
 
+  }
   obtenerDatosAutos() {
     this.autosService.getAutos().subscribe(
       data => {
@@ -54,6 +59,10 @@ export class AutosComponent {
         }
       }
     );
+  }
+
+  seleccionarAuto(auto: AutoModel) {
+    this.reservaService.setAuto(auto);
   }
 
   filtrarPorCategoria(categoria: string) {

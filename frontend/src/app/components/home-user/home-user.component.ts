@@ -8,6 +8,8 @@ import { RouterLink } from '@angular/router';
 import { FooterComponent } from "../footer/footer.component";
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from "../navbar/navbar.component";
+import { ReservaService } from 'src/app/services/reserva.service';
+import { ReservaLugarModel } from 'src/app/models/datosModels';
 
 
 @Component({
@@ -21,8 +23,14 @@ import { NavbarComponent } from "../navbar/navbar.component";
 
 export class HomeUserComponent implements OnInit{
   sucursales: any[] = [];
+  sucursalA: string = "";
+  fechaA: string = "";
+  horaA: string = "";
+  sucursalD: string = "";
+  fechaD: string = "";
+  horaD: string = "";
 
-  constructor(private lugarService: LugarService, private router: Router) {}
+  constructor(private lugarService: LugarService, private router: Router, private reservaService: ReservaService) {}
 
   ngOnInit(): void {
     this.cargarSucursales();
@@ -42,4 +50,21 @@ export class HomeUserComponent implements OnInit{
       }
     );  
   }
+
+  onClick(): void {
+    const reserva: ReservaLugarModel = {
+      sucursalA: this.sucursalA,
+      fechaA: new Date(this.fechaA),
+      horaA: this.horaA,
+      sucursalD: this.sucursalD,
+      fechaD: new Date(this.fechaD),
+      horaD: this.horaD,
+    };
+  
+    this.reservaService.setReserva(reserva);
+    console.log('Reserva enviada:', reserva);
+    this.router.navigate(['/auto']); // Navega al siguiente paso (selección de auto)
+  }
+  
+  
 }

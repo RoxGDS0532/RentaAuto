@@ -54,7 +54,7 @@
             <!-- <p><i class="fas fa-car-side"></i> Cantidad: {{ auto.cantVehiculos }}</p> -->
 
             <div class="text-center mt-3">
-              <button routerLink="/auto/confi" class="btn btn-danger"><i class="fas fa-book" ></i> Reservar Auto</button>
+              <button (click)="seleccionarAuto(auto)" routerLink="/confi" class="btn btn-danger"><i class="fas fa-book" ></i> Reservar Auto</button>
             </div>
           </div>
         </div>

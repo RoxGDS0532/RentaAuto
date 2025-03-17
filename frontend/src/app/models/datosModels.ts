@@ -25,24 +25,18 @@ export class CuidadModel {
     pais: string="";
 
 }
-export class ReservaModel {
-    _id?: string;
-    cliente: string = "";
-    edad: number = 0;
-    correo: string = "";
-    telefono: number = 0;
-    lugarS: string = "";
-    fechasS: Date = new Date();
-    horasS: string = "";
-    lugarE: string = "";
-    fechasE: Date = new Date();
-    horasE: string = "";
-    estatusR: string = "";
-    total: number = 0
-    vehiculo: string = "";
-    descuento: number = 0;
-    license : string = "";
-    identification: string ="";
+export interface ReservaModel {
+  _id?: string;
+  cliente: string;
+  sucursalA: string;
+  fechaA: Date;
+  horaA: string;
+  sucursalD: string;
+  fechaD: Date;
+  horaD: string;
+  estado?: string;
+  costo_total: number;
+  vehiculo: string;
 }
 
 export class UsuarioModel {
@@ -57,13 +51,12 @@ export class UsuarioModel {
 }
 
 export class ReservaLugarModel {
-   lugarS: string = "";
-   fechasS: Date = new Date();
-   horasS: string = "";
-   fechasE: Date = new Date();
-   horasE: string = "";
-   lugarE: string = "";
-   descuento: number = 0;
+   sucursalA: string = "";
+   fechaA: Date = new Date();
+   horaA: string = "";
+   fechaD: Date = new Date();
+   horaD: string = "";
+   sucursalD: string = "";
  }
 
 
@@ -100,7 +93,7 @@ export interface AutoModel {
   tarifa_dia: number;
   imagenes: string[]; // Asumiendo que puede haber varias imágenes
   cantVehiculos?: number;  // Esto puede estar disponible dependiendo de los datos, si no existe puedes omitirlo
-  categoria?: string; // Si la categoría es opcional
+ // categoria?: string; // Si la categoría es opcional
 }
 
   

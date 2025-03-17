@@ -6,47 +6,44 @@
 
                
                 <div class="alert alert-danger text-center mt-5" role="alert">
-                    🚗 ¡Alquila el auto perfecto para tu viaje! Reserva en minutos y disfruta sin preocupaciones. 
+                    ¡Alquila el auto perfecto para tu viaje! Reserva en minutos y disfruta sin preocupaciones. 
                   </div>
                 <p class="card-text fs-6">Tu destino para alquilar el auto perfecto.</p>
                 <form class="row g-3">
                     <div class="col-md-6 col-12">
-                        
-                        <label for="lugarS" class="form-label fs-6">Sucursal de Salida:</label>
-                        <select class="form-control" id="lugarS">
-                            <option value="">Selecciona una Sucursal</option>
-                            <option *ngFor="let sucursal of sucursales" [value]="sucursal._id">{{ sucursal.nombre }}</option>
-                        </select>
+                      <label for="lugarS" class="form-label fs-6">Sucursal de Salida:</label>
+                      <select class="form-control" id="lugarS" [(ngModel)]="sucursalA" name="sucursalA">
+                        <option value="">Selecciona una Sucursal</option>
+                        <option *ngFor="let sucursal of sucursales" [value]="sucursal._id">{{ sucursal.nombre }}</option>
+                      </select>
                     </div>
                     <div class="col-md-3 col-6">
-                        <label for="fechasS" class="form-label fs-6">Salida:</label>
-                        <input type="date" class="form-control" id="fechasS">
+                      <label for="fechasS" class="form-label fs-6">Salida:</label>
+                      <input type="date" class="form-control" id="fechasS" [(ngModel)]="fechaA" name="fechaA">
                     </div>
                     <div class="col-md-3 col-6">
-                        <label for="horasS" class="form-label fs-6">Hora:</label>
-                        <input type="time" class="form-control" id="horasS">
+                      <label for="horasS" class="form-label fs-6">Hora:</label>
+                      <input type="time" class="form-control" id="horasS" [(ngModel)]="horaA" name="horaA">
                     </div>
                     <div class="col-md-6 col-12">
-                        <label for="lugarE" class="form-label fs-6">Sucursal de Entrega:</label>
-                        <select class="form-control" id="lugarE">
-                            <option value="">Selecciona una Sucursal</option>
-                            <option *ngFor="let sucursal of sucursales" [value]="sucursal._id">{{ sucursal.nombre }}</option>
-                        </select>
+                      <label for="lugarE" class="form-label fs-6">Sucursal de Entrega:</label>
+                      <select class="form-control" id="lugarE" [(ngModel)]="sucursalD" name="sucursalD">
+                        <option value="">Selecciona una Sucursal</option>
+                        <option *ngFor="let sucursal of sucursales" [value]="sucursal._id">{{ sucursal.nombre }}</option>
+                      </select>
                     </div>
                     <div class="col-md-3 col-6">
-                        <label for="fechasE" class="form-label fs-6">Entrega:</label>
-                        <input type="date" class="form-control" id="fechasE">
+                      <label for="fechasE" class="form-label fs-6">Entrega:</label>
+                      <input type="date" class="form-control" id="fechasE" [(ngModel)]="fechaD" name="fechaD">
                     </div>
                     <div class="col-md-3 col-6">
-                        <label for="horasE" class="form-label fs-6">Hora:</label>
-                        <input type="time" class="form-control" id="horasE">
+                      <label for="horasE" class="form-label fs-6">Hora:</label>
+                      <input type="time" class="form-control" id="horasE" [(ngModel)]="horaD" name="horaD">
                     </div>
                     <div class="col-12">
-                        <button routerLink="/auto" type="submit" class="btn btn-danger btn-lg w-100">¡Reserva tu auto ahora!</button>
+                      <button type="button" class="btn btn-danger btn-lg w-100" (click)="onClick()">¡Reserva tu auto ahora!</button>
                     </div>
-                   
-                      
-                </form>
+                  </form>                  
             </div>
         </div>
     </div>
