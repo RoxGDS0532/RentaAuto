@@ -1,19 +1,51 @@
 <app-navbar></app-navbar>
 
 <app-breadcrumbs></app-breadcrumbs>
-<div class="form-container">
-    <form [formGroup]="reservaForm" (ngSubmit)="agregarReserva()" class="form">
-      <div class="form-group">
-        <input formControlName="cliente" type="text" placeholder="Cliente" class="form-control" />
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="row w-100">
+    <!-- Columna de resumen (izquierda) -->
+    <div class="col-md-4 col-12">
+      <div class="card p-3 shadow">
+        <h5>Resumen de tu reserva</h5>
+        <hr>
+        <p><strong>Lugar y fecha</strong> </p>
+        <p><a href="/">Cambiar</a></p>
+        <p>Entrega: {{ reservaForm.value.fechaA | date:'fullDate':'UTC' }} - {{ reservaForm.value.horaA }}</p>
+        <p>Devolución: {{ reservaForm.value.fechaD | date:'fullDate':'UTC' }} - {{ reservaForm.value.horaD }}</p>
+
+        <hr>
+        <p><strong>Tu Auto</strong> </p>
+        <p><a href="javascript:void(0)" (click)="regresar()">Cambiar</a></p>
+        <p>{{ reservaForm.value.vehiculo }}</p>
+        <img *ngIf="imagenAuto.length > 0" [src]="imagenAuto[0]" alt="Imagen del auto" class="img-fluid">
+        <hr>
+        <p><strong>Tu renta incluye</strong></p>
+        <p>✔ Kilometraje ilimitado</p>
+
+        <hr>
+        <p><strong>Precio Total: </strong> $ {{ reservaForm.value.costo_total }}</p>
       </div>
-      <div class="form-group">
-        <input formControlName="telefono" type="text" placeholder="Teléfono" class="form-control" />
-      </div>
-      <div class="form-group">
-        <input formControlName="correo" type="email" placeholder="Correo" class="form-control" />
-      </div>
-      <button type="submit" class="submit-btn">Enviar</button>
-    </form>
+    </div>
+
+    <!-- Formulario (derecha) -->
+    <div class="col-md-8 col-12 mt-4 mt-md-0">
+      <form [formGroup]="reservaForm" (ngSubmit)="agregarReserva()" class="form">
+        <h5>Tus datos</h5>
+
+        <div class="form-group">
+          <input formControlName="cliente" type="text" placeholder="Nombre del Cliente" class="form-control" />
+        </div>
+        <div class="form-group">
+          <input formControlName="telefono" type="text" placeholder="Teléfono" class="form-control" />
+        </div>
+        <div class="form-group">
+          <input formControlName="correo" type="email" placeholder="Correo" class="form-control" />
+        </div>
+        <button type="submit" class="submit-btn btn btn-primary w-100">Reservar</button>
+      </form>
+    </div>
   </div>
-  
+</div>
+
 <app-footer></app-footer>

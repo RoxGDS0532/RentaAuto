@@ -7,20 +7,27 @@ import { AutoModel, ReservaModel } from 'src/app/models/datosModels';
 import { FormsModule, FormGroup, FormBuilder, Validators, AbstractControl,ReactiveFormsModule  } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ReservaCompletaService } from '../../services/reserva-completa.service';
+import { DatePipe,CommonModule  } from '@angular/common';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-confi-reserva',
   standalone: true,
-  imports: [BreadcrumbsComponent, FooterComponent, NavbarComponent,FormsModule,ReactiveFormsModule ],
+  imports: [BreadcrumbsComponent, FooterComponent, NavbarComponent,FormsModule,ReactiveFormsModule,CommonModule ],
   templateUrl: './confi-reserva.component.html',
-  styleUrl: './confi-reserva.component.css'
+  styleUrl: './confi-reserva.component.css',
+  providers: [DatePipe], 
+
 })
 export class ConfiReservaComponent  implements OnInit{
   reservaForm: FormGroup;
   nuevaReserva: ReservaModel = new ReservaModel();
   reservaLugar$= this.reservaService.reserva$;
   selectedAuto$ = this.reservaService.selectedAuto$;
+  imagenAuto: any=[]; 
 
-  constructor(private fb: FormBuilder,private reservaService: ReservaService, private toastrService: ToastrService, private reservaCompletaService: ReservaCompletaService) {
+
+  constructor(private fb: FormBuilder,private reservaService: ReservaService, private toastrService: ToastrService, private reservaCompletaService: ReservaCompletaService, private location: Location) {
     this.reservaForm = this.fb.group({
       cliente: ['', Validators.required], 
       telefono: ['', Validators.required],
@@ -45,10 +52,18 @@ export class ConfiReservaComponent  implements OnInit{
     });
 
     this.selectedAuto$.subscribe(autoSeleccionado => {
-      this.reservaForm.patchValue({
-        vehiculo: autoSeleccionado.modelo,
-        total: autoSeleccionado.tarifa_dia 
-      });
+      if (autoSeleccionado && this.reservaForm.value.fechaA && this.reservaForm.value.fechaD) {
+        const fechaInicio = new Date(this.reservaForm.value.fechaA);
+        const fechaFin = new Date(this.reservaForm.value.fechaD);
+        const diasRenta = Math.ceil((fechaFin.getTime() - fechaInicio.getTime()) / (1000 * 60 * 60 * 24)); 
+  
+        this.reservaForm.patchValue({
+          vehiculo: autoSeleccionado.modelo,
+          total: autoSeleccionado.tarifa_dia,
+          costo_total: diasRenta * autoSeleccionado.tarifa_dia 
+        });
+        this.imagenAuto = autoSeleccionado.imagenes?.length > 0 ? autoSeleccionado.imagenes : ['URL_DEFAULT'];
+      }
     });
   }
   agregarReserva() {
@@ -62,6 +77,7 @@ export class ConfiReservaComponent  implements OnInit{
         .subscribe(
           (reserva: ReservaModel) => {
             console.log('Reserva creada:', reserva);
+            this.toastrService.success('Reserva creada con éxito')
           },
           error => {
             console.error('Error al crear la reserva:', error);
@@ -81,4 +97,7 @@ export class ConfiReservaComponent  implements OnInit{
     this.reservaService.setReservaCompleta(reserva);
   }
   
+  regresar(): void {
+    this.location.back();
+  }
 }

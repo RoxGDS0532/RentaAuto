@@ -12,9 +12,9 @@
                 <form class="row g-3">
                     <div class="col-md-6 col-12">
                       <label for="lugarS" class="form-label fs-6">Sucursal de Salida:</label>
-                      <select class="form-control" id="lugarS" [(ngModel)]="sucursalA" name="sucursalA">
+                      <select class="form-control" id="sucursalA" [(ngModel)]="sucursalA" name="sucursalA">
                         <option value="">Selecciona una Sucursal</option>
-                        <option *ngFor="let sucursal of sucursales" [value]="sucursal._id">{{ sucursal.nombre }}</option>
+                        <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal">{{ sucursal.nombre }}</option>
                       </select>
                     </div>
                     <div class="col-md-3 col-6">
@@ -27,9 +27,9 @@
                     </div>
                     <div class="col-md-6 col-12">
                       <label for="lugarE" class="form-label fs-6">Sucursal de Entrega:</label>
-                      <select class="form-control" id="lugarE" [(ngModel)]="sucursalD" name="sucursalD">
+                      <select class="form-control" id="sucursalD" [(ngModel)]="sucursalD" name="sucursalD">
                         <option value="">Selecciona una Sucursal</option>
-                        <option *ngFor="let sucursal of sucursales" [value]="sucursal._id">{{ sucursal.nombre }}</option>
+                        <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal">{{ sucursal.nombre }}</option>
                       </select>
                     </div>
                     <div class="col-md-3 col-6">

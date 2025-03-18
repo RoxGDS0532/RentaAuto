@@ -23,10 +23,10 @@ import { ReservaLugarModel } from 'src/app/models/datosModels';
 
 export class HomeUserComponent implements OnInit{
   sucursales: any[] = [];
-  sucursalA: string = "";
+  sucursalA: any = {};
   fechaA: string = "";
   horaA: string = "";
-  sucursalD: string = "";
+  sucursalD: any = {};  
   fechaD: string = "";
   horaD: string = "";
 
@@ -53,10 +53,10 @@ export class HomeUserComponent implements OnInit{
 
   onClick(): void {
     const reserva: ReservaLugarModel = {
-      sucursalA: this.sucursalA,
+      sucursalA: this.sucursalA.nombre,
       fechaA: new Date(this.fechaA),
       horaA: this.horaA,
-      sucursalD: this.sucursalD,
+      sucursalD: this.sucursalD.nombre,
       fechaD: new Date(this.fechaD),
       horaD: this.horaD,
     };

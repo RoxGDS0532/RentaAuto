@@ -20,6 +20,11 @@ import { importProvidersFrom } from '@angular/core';
 import { withComponentInputBinding } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbCarouselModule, } from '@ng-bootstrap/ng-bootstrap';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+
+registerLocaleData(localeEs);
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -31,6 +36,7 @@ export const appConfig: ApplicationConfig = {
     CommonModule,
     provideAnimations(),
     provideToastr(),
+    { provide: LOCALE_ID, useValue: 'es' },
     SocialLoginModule,
     SpinnerComponent,
     BrowserModule,
