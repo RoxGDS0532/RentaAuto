@@ -11,6 +11,8 @@ import { FooterComponent } from "../footer/footer.component";
 import { NavbarComponent } from "../navbar/navbar.component";
 import { ErrorService } from 'src/app/services/error.service'; 
 import { ReservaService } from 'src/app/services/reserva.service';
+import { take } from 'rxjs/operators';
+
 
 
 @Component({
@@ -41,6 +43,8 @@ export class AutosComponent implements OnInit{
   ngOnInit(): void {
     this.obtenerDatosAutos();
     this.cargarLugares();
+    this.reservaService.selectedAuto$.subscribe((auto: AutoModel) => {
+    });
 
   }
   obtenerDatosAutos() {
@@ -61,9 +65,12 @@ export class AutosComponent implements OnInit{
     );
   }
 
-  seleccionarAuto(auto: AutoModel) {
+  seleccionarAuto(auto: AutoModel) :void{
     this.reservaService.setAuto(auto);
+    console.log('Auto seleccionado:', auto);
   }
+  
+  
 
   filtrarPorCategoria(categoria: string) {
     console.log('Categoria seleccionada:', categoria);  // Verifica la categoría seleccionada

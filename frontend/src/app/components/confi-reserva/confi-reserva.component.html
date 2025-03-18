@@ -1,5 +1,19 @@
 <app-navbar></app-navbar>
 
 <app-breadcrumbs></app-breadcrumbs>
-
+<div class="form-container">
+    <form [formGroup]="reservaForm" (ngSubmit)="agregarReserva()" class="form">
+      <div class="form-group">
+        <input formControlName="cliente" type="text" placeholder="Cliente" class="form-control" />
+      </div>
+      <div class="form-group">
+        <input formControlName="telefono" type="text" placeholder="Teléfono" class="form-control" />
+      </div>
+      <div class="form-group">
+        <input formControlName="correo" type="email" placeholder="Correo" class="form-control" />
+      </div>
+      <button type="submit" class="submit-btn">Enviar</button>
+    </form>
+  </div>
+  
 <app-footer></app-footer>

@@ -63,7 +63,7 @@ export class HomeUserComponent implements OnInit{
   
     this.reservaService.setReserva(reserva);
     console.log('Reserva enviada:', reserva);
-    this.router.navigate(['/auto']); // Navega al siguiente paso (selección de auto)
+    this.router.navigate(['/auto']); 
   }
   
   

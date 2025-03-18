@@ -4,6 +4,7 @@ const conectarDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
 const Auto = require('./models/Auto');  // Modelo de Auto
 const Sucursal = require('./models/Sucursal'); 
+const Reserva = require('./models/Reserva'); 
 
 // Creamos el servidor
 const app = express();
@@ -22,6 +23,7 @@ app.use(cors({
 app.use(express.json());
 
 // Rutas de la API
+app.use('/api/reserva', require('./routes/reserva'))
 app.use('/api/auto', require('./routes/auto'));
 app.use('/api/sucursal', require('./routes/sucursal'));
 app.use('/api/users', userRoutes);

@@ -25,18 +25,20 @@ export class CuidadModel {
     pais: string="";
 
 }
-export interface ReservaModel {
+export class ReservaModel {
   _id?: string;
-  cliente: string;
-  sucursalA: string;
-  fechaA: Date;
-  horaA: string;
-  sucursalD: string;
-  fechaD: Date;
-  horaD: string;
+  cliente?: string;
+  sucursalA?: string;
+  fechaA?: Date;
+  horaA?: string;
+  sucursalD?: string;
+  fechaD?: Date;
+  horaD?: string;
   estado?: string;
-  costo_total: number;
-  vehiculo: string;
+  costo_total?: number;
+  vehiculo?: string;
+  telefono?: string;
+  correo?: string;
 }
 
 export class UsuarioModel {

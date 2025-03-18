@@ -58,6 +58,8 @@ export class ReservaService {
   estado: '',
   costo_total: 0,
   vehiculo: '',
+  telefono: '',
+  correo: ''
    };
   
    const iniAuto: AutoModel = {
