@@ -1,6 +1,16 @@
 <app-navbar></app-navbar>
 
-<app-breadcrumbs></app-breadcrumbs>
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-sm-12">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a class="text-danger" href="/">Home</a></li>
+          <li class="breadcrumb-item"><a class="text-danger" href="/auto">Auto</a></li>
+          <li class="breadcrumb-item active text-darkred">Confirmacion de la Reserva</li>
+        </ol>
+      </div>
+    </div>
+  </div> 
 
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
   <div class="row w-100">
@@ -24,7 +34,7 @@
         <p>✔ Kilometraje ilimitado</p>
 
         <hr>
-        <p><strong>Precio Total: </strong> $ {{ reservaForm.value.costo_total }}</p>
+        <p><strong>Precio Total: </strong> ${{ reservaForm.value.costo_total }}</p>
       </div>
     </div>
 

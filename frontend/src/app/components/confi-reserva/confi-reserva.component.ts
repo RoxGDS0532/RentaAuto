@@ -100,4 +100,8 @@ export class ConfiReservaComponent  implements OnInit{
   regresar(): void {
     this.location.back();
   }
+
+
+
 }
+
