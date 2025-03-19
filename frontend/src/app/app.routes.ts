@@ -8,6 +8,7 @@ import { PromocionesComponent } from './components/promociones/promociones.compo
 import { MapaComponent } from './components/mapa/mapa.component';
 import { Error404Component } from './components/error404/error404.component';
 import { Error500Component } from './components/error500/error500.component';
+import { ReservaComponent } from './components/reserva/reserva.component';
 
 export const routes: Routes = [
     { path: '', component: HomeUserComponent, data: { titulo: 'Home' } },
@@ -16,9 +17,9 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent, data: { titulo: 'Login' } },
     { path: 'signIn', component: SignInComponent, data: { titulo: 'Registro' } },
     { path: 'promociones',  component: PromocionesComponent, data: { titulo: 'Promociones'}},
+    {path: 'reserva', component: ReservaComponent, data: {titulo: 'Editar Reserva'}},
     { path: 'mapa', component: MapaComponent, data: { titulo: 'Mapa del sitio' }},
     { path: 'error500', component: Error500Component, data: { titulo: 'error 500' }},
-
 
 
     { path: '**', component: Error404Component, data: { titulo: 'error 404' }},

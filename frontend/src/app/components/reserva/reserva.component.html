@@ -1,0 +1,134 @@
+<app-navbar></app-navbar>
+<app-breadcrumbs></app-breadcrumbs>
+
+<div class="container mt-5 mb-5"> <!-- Contenedor principal -->
+    <div class="row">
+      <div class="col text-center">
+        <h2>Ver, modificar o cancelar</h2>
+        <p>Aquí podrás ver, modificar o cancelar las reservas que hayas hecho. Solo necesitas completar la siguiente información.</p>
+      </div>
+    </div>
+    <div class="search-box mt-4 mb-4" style="border: 30px;"> 
+      <!-- Contenedor de búsqueda -->
+      <div class="row">
+       
+        <div class="col-sm-6">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="No. Reserva" #idReservaInput>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <button  style="width: 250px;" class="btn btn-danger" (click)="obtenReserva(idReservaInput.value)"><i class="fas fa-search"></i> Buscar</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row justify-content-center" *ngIf="reservaEncontrada">
+      <div class="col-12 col-md-10 mt-4"> 
+        <div class="card shadow-sm">
+          <img src="https://media.istockphoto.com/id/997960674/es/foto/ilustraci%C3%B3n-3d-del-gen%C3%A9rico-rojo-deportivo-sed%C3%A1n-sobre-fondo-blanco.jpg?s=612x612&w=0&k=20&c=e7-m5nI_sBvMw73OOauY2QtMwZAjaW_L7d7WRG7JG9A=" class="card-img-top" alt="Imagen del vehículo">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Vehículo: {{reservaEncontrada.vehiculo}}</li>
+                  <li class="list-group-item">Cliente: {{reservaEncontrada.cliente}}</li>
+                  <li class="list-group-item">Correo: {{reservaEncontrada.correo}}</li>
+                  <li class="list-group-item">Teléfono: {{reservaEncontrada.telefono}}</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Lugar de Reserva: {{reservaEncontrada.sucursalA}}</li>
+                  <li class="list-group-item">Fecha de Reserva: {{reservaEncontrada.fechaA}}</li>
+                  <li class="list-group-item">Hora de Reserva: {{reservaEncontrada.horaA}}</li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Fecha de Entrega: {{reservaEncontrada.fechaD}}</li>
+                  <li class="list-group-item">Hora de Entrega: {{reservaEncontrada.horaD}}</li>
+                  <li class="list-group-item">Lugar de Entrega: {{reservaEncontrada.sucursalD}}</li>
+                  <li class="list-group-item">Costo: ${{reservaEncontrada.costo_total}} MXN</li> 
+                </ul>
+              </div>
+            </div>
+<!-- Botones Modificar, Guardar y Cancelar -->
+<div class="card-footer">
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <button class="btn btn-success"  (click)="mostrarFormulario()"><i class="fas fa-edit"></i> Modificar</button>
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-danger" (click)="cancelarReserva(idReservaInput.value)"><i class="fas fa-times"></i> Cancelar</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="mostrarForm">
+  <form [formGroup]="reservaForm" (ngSubmit)="actualizarReserva()">
+    <fieldset>
+      <legend>Información del Cliente</legend>
+      <div class="form-group">
+        <label for="cliente">Nombre:</label>
+        <input type="text" class="form-control" id="cliente" formControlName="cliente">
+      </div>
+      <div class="form-group">
+        <label for="correo">Correo:</label>
+        <input type="email" class="form-control" id="correo" formControlName="correo">
+      </div>
+      <div class="form-group">
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" class="form-control" id="telefono" formControlName="telefono">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Detalles de la Reserva</legend>
+      <div class="form-group">
+        <label for="lugarS">Lugar de Reserva:</label>
+        <input type="text" class="form-control" id="lugarS" formControlName="lugarS">
+      </div>
+      <div class="form-group">
+        <label for="fechasS">Fecha de Reserva:</label>
+        <input type="date" class="form-control" id="fechasS" formControlName="fechasS">
+      </div>
+      <div class="form-group">
+        <label for="horasS">Hora de Reserva:</label>
+        <input type="time" class="form-control" id="horasS" formControlName="horasS">
+      </div>
+      <div class="form-group">
+        <label for="fechasE">Fecha de Entrega:</label>
+        <input type="date" class="form-control" id="fechasE" formControlName="fechasE">
+      </div>
+      <div class="form-group">
+        <label for="horasE">Hora de Entrega:</label>
+        <input type="time" class="form-control" id="horasE" formControlName="horasE">
+      </div>
+      <!-- <div class="col-md-6">
+        <p class="fs-5"><strong>Licencia:</strong></p>
+        <iframe [src]="getSafeUrl('http://localhost:3000/uploads/' + reservaEncontrada.license)" width="100%" height="500px"></iframe>
+        <p class="fs-5"><strong>Identificación:</strong></p>
+        <iframe [src]="getSafeUrl('http://localhost:3000/uploads/' + reservaEncontrada.identification)" width="100%" height="500px"></iframe>
+      </div> -->
+    </fieldset>
+
+    <fieldset>
+      <legend>Detalles del Vehículo</legend>
+      <div class="form-group">
+        <label for="vehiculo">Vehículo:</label>
+        <input type="text" class="form-control" id="vehiculo" formControlName="vehiculo">
+      </div>
+
+    </fieldset>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
+  </form>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
