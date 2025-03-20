@@ -5,6 +5,10 @@ html, body {
     background-color: rgb(220, 206, 206); /* Fondo gris claro */
     color: white; /* Texto blanco */
 }
+app-breadcrumbs {
+    display: block;
+    margin-top: 100px; 
+  }
 
 .wrapper {
     display: flex;
