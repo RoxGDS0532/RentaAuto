@@ -1,6 +1,99 @@
-<div class="error-container">
-    
-    <h1 class="error-code">500</h1>
-    <p class="error-message">¡Ups! Algo salió mal en el servidor. Por favor, intenta nuevamente más tarde.</p>
-    <a routerLink="/" class="back-home">🏠 Volver al inicio</a>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 500</title>
+    <style>
+        /* Estilos generales */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff6b6b, #ffa07a);
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .error-container {
+            position: relative;
+            max-width: 600px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Código de error */
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            color: #d9534f;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.9);
+            animation: flashEffect 1s infinite alternate;
+        }
+
+        @keyframes flashEffect {
+            0% { text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); }
+            100% { text-shadow: 0 0 20px rgba(255, 80, 80, 1); }
+        }
+
+        /* Mensaje de error */
+        .error-message {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        /* Botón estilizado */
+        .back-home {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #fff;
+            background: #007bff;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            animation: bounce 1.5s infinite alternate;
+        }
+
+        .back-home:hover {
+            background: #0056b3;
+            transform: scale(1.1);
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
+        }
+
+        /* Imagen del auto */
+        .car-img {
+            width: 150px;
+            margin-top: 20px;
+        }
+
+        /* Emoji debajo del botón */
+        .car-emoji {
+            font-size: 3rem;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="error-container">
+        <h1 class="error-code">500</h1>
+        <p class="error-message">¡Ups! Parece que tomamos un desvío inesperado. Estamos trabajando para volver al camino correcto. Mientras tanto, regresa al inicio y encuentra el auto perfecto para tu viaje.</p>
+        <a href="/" class="back-home">🏁 Volver al inicio</a>
+        <div class="car-emoji">🚗💨</div>
+    </div>
+
+</body>
+</html>

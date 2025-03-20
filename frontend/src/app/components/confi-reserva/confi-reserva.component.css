@@ -8,6 +8,11 @@
   max-width: 700px;
 }
 
+app-breadcrumbs {
+  display: block;
+  margin-top: 100px; 
+}
+
 .form-group {
   margin-bottom: 15px;
 }

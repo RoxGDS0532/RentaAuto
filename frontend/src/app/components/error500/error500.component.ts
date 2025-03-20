@@ -9,5 +9,11 @@ import { Router } from '@angular/router';
   styleUrl: './error500.component.css'
 })
 export class Error500Component{
+  constructor(private router: Router) {}
 
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.router.navigate(['/']);
+    }, 9000);
+  }
 }

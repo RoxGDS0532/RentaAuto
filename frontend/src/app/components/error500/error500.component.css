@@ -1,66 +1,47 @@
 /* Estilos generales */
 .error-container {
     text-align: center;
-    margin-top: 100px;
+    margin-top: 30px;
     position: relative;
     overflow: hidden;
-}
-
-/* Animación de carretera */
-.road-animation {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 200px;
-    background: url('https://i.imgur.com/1l6V8tj.gif') repeat-x;
-    background-size: cover;
-    animation: moveRoad 3s linear infinite;
-}
-
-/* Animación de la carretera */
-@keyframes moveRoad {
-    from {
-        background-position: 0;
-    }
-    to {
-        background-position: -1000px;
-    }
+    height: 100vh;
 }
 
 /* Código de error animado */
 .error-code {
-    font-size: 6rem;
+    font-size: 8rem;
     font-weight: bold;
     color: #d9534f;
-    animation: brakeEffect 1.5s ease-in-out infinite alternate;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.9);
+    animation: flashEffect 1s infinite alternate;
 }
 
-/* Animación de frenado */
-@keyframes brakeEffect {
-    0% { transform: scale(1); color: #d9534f; }
-    100% { transform: scale(1.1); color: #ff3333; }
+/* Efecto de luces en el código de error */
+@keyframes flashEffect {
+    0% { text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); }
+    100% { text-shadow: 0 0 20px rgba(255, 80, 80, 1); }
 }
 
 /* Mensaje de error */
 .error-message {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-top: 20px;
-    color: #555;
+    color: #444;
 }
 
 /* Botón estilizado */
 .back-home {
     display: inline-block;
     margin-top: 20px;
-    padding: 12px 25px;
-    font-size: 1.2rem;
+    padding: 14px 30px;
+    font-size: 1.4rem;
     font-weight: bold;
     color: #fff;
     background: #007bff;
-    border-radius: 5px;
+    border-radius: 8px;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
+    animation: bounce 1.5s infinite alternate;
 }
 
 /* Hover del botón */
@@ -68,3 +49,11 @@
     background: #0056b3;
     transform: scale(1.1);
 }
+
+/* Efecto de rebote */
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-8px); }
+}
+
+
