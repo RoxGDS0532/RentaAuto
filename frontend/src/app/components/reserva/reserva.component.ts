@@ -3,16 +3,17 @@ import { BreadcrumbsComponent } from "../../shared/breadcrumbs/breadcrumbs.compo
 import { NavbarComponent } from "../navbar/navbar.component";
 import { FooterComponent } from "../footer/footer.component";
 import { ReservaModel } from 'src/app/models/datosModels';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ReservaCompletaService } from 'src/app/services/reserva-completa.service';
 import { ToastrService } from 'ngx-toastr';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { LugarService } from '../../services/lugar.service';
 
 @Component({
   selector: 'app-reserva',
   standalone: true,
-  imports: [BreadcrumbsComponent, NavbarComponent, FooterComponent,CommonModule, ReactiveFormsModule ],
+  imports: [BreadcrumbsComponent, NavbarComponent, FooterComponent,CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './reserva.component.html',
   styleUrl: './reserva.component.css'
 })
@@ -20,26 +21,29 @@ export class ReservaComponent {
   reservaEncontrada: ReservaModel;
   reservaForm: FormGroup;
   mostrarForm = false;
+  sucursales: any[] = [];
+  sucursalD: any = {};  
+  sucursalA: any = {};
+
+
+
   
-   constructor(private reservaCompletaService: ReservaCompletaService,private toastrService:ToastrService,private fb: FormBuilder,private sanitizer: DomSanitizer) { 
+   constructor(private reservaCompletaService: ReservaCompletaService,private toastrService:ToastrService,private fb: FormBuilder,private sanitizer: DomSanitizer, private lugarService:LugarService) { 
     this.reservaEncontrada = new ReservaModel();
     this.reservaForm = this.fb.group({
       _id: [null],
       cliente: ['', Validators.required],
-      edad: ['', Validators.required],
       correo: ['', Validators.required],
       telefono: ['', Validators.required],
-      lugarS: ['', Validators.required],
-      fechasS: ['', Validators.required],
-      horasS: ['', Validators.required],
-      fechasE: ['', Validators.required],
-      horasE: ['', Validators.required],
-      lugarE: ['', Validators.required],
-      estatusR: ['', Validators.required],
-      total: ['', Validators.required],
-      vehiculo: ['', Validators.required],
-      license: [''], 
-      identification: ['']
+      sucursalA: ['', Validators.required],
+      fechaA: ['', Validators.required],
+      horaA: ['', Validators.required],
+      fechaD: ['', Validators.required],
+      horaD: ['', Validators.required],
+      sucursalD: ['', Validators.required],
+      estatado: ['', Validators.required],
+      costo_total: ['', Validators.required],
+      vehiculo: ['', Validators.required]
     });
    }
    ngOnInit(): void {
@@ -58,9 +62,6 @@ export class ReservaComponent {
      );
    }
    
-  getSafeUrl(url: string): SafeResourceUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  }
 
    
   cancelarReserva(id: string | undefined): void {
@@ -106,4 +107,16 @@ export class ReservaComponent {
   cancelarEdicion(): void {
     this.mostrarForm = false;
   }
+
+  cargarSucursales(): void {
+    this.lugarService.getSucursales().subscribe(
+      (data:any) => {
+        this.sucursales = data;
+      },
+      (error:any) => {
+        console.error('Error al obtener sucursales', error);
+      }
+    );  
+  }
 }
+

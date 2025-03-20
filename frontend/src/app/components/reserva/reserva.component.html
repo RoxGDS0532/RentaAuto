@@ -85,31 +85,35 @@
     <fieldset>
       <legend>Detalles de la Reserva</legend>
       <div class="form-group">
-        <label for="lugarS">Lugar de Reserva:</label>
-        <input type="text" class="form-control" id="lugarS" formControlName="lugarS">
+        <label for="sucursalD" class="form-label fs-6">Sucursal de Entrega:</label>
+            <select class="form-control" id="sucursalD" formControlName="sucursalD" name="sucursalD">
+            <option value="">Selecciona una Sucursal</option>
+            <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal">{{ sucursal.nombre }}</option>
+            </select>
       </div>
       <div class="form-group">
-        <label for="fechasS">Fecha de Reserva:</label>
-        <input type="date" class="form-control" id="fechasS" formControlName="fechasS">
+      <label for="sucursalA" class="form-label fs-6">Sucursal de Entrega:</label>
+            <select class="form-control" id="sucursalA" formControlName="sucursalA" name="sucursalA">
+            <option value="">Selecciona una Sucursal</option>
+            <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal">{{ sucursal.nombre }}</option>
+            </select>
       </div>
       <div class="form-group">
-        <label for="horasS">Hora de Reserva:</label>
-        <input type="time" class="form-control" id="horasS" formControlName="horasS">
+        <label for="fechaA">Fecha de Reserva:</label>
+        <input type="date" class="form-control" id="fechaA" formControlName="fechaA">
       </div>
       <div class="form-group">
-        <label for="fechasE">Fecha de Entrega:</label>
-        <input type="date" class="form-control" id="fechasE" formControlName="fechasE">
+        <label for="horaA">Hora de Reserva:</label>
+        <input type="time" class="form-control" id="horaA" formControlName="horaA">
       </div>
       <div class="form-group">
-        <label for="horasE">Hora de Entrega:</label>
-        <input type="time" class="form-control" id="horasE" formControlName="horasE">
+        <label for="fechaA">Fecha de Entrega:</label>
+        <input type="date" class="form-control" id="fechaA" formControlName="fechaD">
       </div>
-      <!-- <div class="col-md-6">
-        <p class="fs-5"><strong>Licencia:</strong></p>
-        <iframe [src]="getSafeUrl('http://localhost:3000/uploads/' + reservaEncontrada.license)" width="100%" height="500px"></iframe>
-        <p class="fs-5"><strong>Identificación:</strong></p>
-        <iframe [src]="getSafeUrl('http://localhost:3000/uploads/' + reservaEncontrada.identification)" width="100%" height="500px"></iframe>
-      </div> -->
+      <div class="form-group">
+        <label for="horaD">Hora de Entrega:</label>
+        <input type="time" class="form-control" id="horaD" formControlName="horaD">
+      </div>
     </fieldset>
 
     <fieldset>
@@ -121,7 +125,7 @@
 
     </fieldset>
 
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="submit" class="btn btn-primary" [disabled]="reservaForm.invalid">Guardar</button>
     <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
   </form>
 </div>
