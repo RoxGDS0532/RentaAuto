@@ -167,8 +167,25 @@ body {
     background-color: #ddd;
   }
   
-  app-breadcrumbs {
-    display: block;
+
+  .breadcrumb-item.active {
+    color: darkred !important;
+  }
+  
+  a{
+    color: #A52A2A;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .breadcrumb{
+    background-color: rgb(248, 243, 243);
+    padding: 10px;
     margin-top: 100px; 
   }
+  
+  
+  
+  
+  
   
