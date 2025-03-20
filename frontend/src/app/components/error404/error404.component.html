@@ -1,6 +1,97 @@
-<div class="error-page">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404</title>
+    <style>
+        /* Estilos generales */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff6b6b, #ffa07a);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .error-page {
+            position: relative;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Código de error con efecto */
+        .error-code {
+            font-size: 6rem;
+            font-weight: bold;
+            color: #800000;
+            animation: fadeOut 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.5; transform: scale(1.1); }
+        }
+
+        /* Mensaje de error */
+        .error-message {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        /* Botón estilizado */
+        .back-home {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            background: #007bff;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .back-home:hover {
+            background: #0056b3;
+            transform: scale(1.1);
+        }
+
+        /* Emoji de auto animado */
+        .car-animation {
+            font-size: 4rem;
+            position: absolute;
+            bottom: 20px;
+            right: -100px;
+            animation: driveLeft 4s infinite linear;
+        }
+
+        @keyframes driveLeft {
+            0% { right: -100px; }
+            50% { right: 50%; transform: rotate(-5deg); }
+            100% { right: 110%; transform: rotate(5deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="error-page">
+        <h1 class="error-code">404</h1>
+        <p class="error-message">Parece que te perdiste en la carretera... 🚗💨</p>
+        <a href="/" class="back-home">🔍 Encuentra tu camino</a>
+    </div>
+
     <div class="car-animation">🚗💨</div>
-    <h1 class="error-code">404</h1>
-    <p class="error-message">Parece que te perdiste en la carretera... 🚗💨</p>
-    <a href="/" class="back-home">🔍 Encuentra tu camino</a>
-</div>
+
+</body>
+</html>

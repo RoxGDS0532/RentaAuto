@@ -13,7 +13,7 @@ export class Error404Component implements OnInit {
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.router.navigate(['/']);  // Redirige al inicio después de 5 segundos
+      this.router.navigate(['/']);
     }, 7000);
   }
 }
