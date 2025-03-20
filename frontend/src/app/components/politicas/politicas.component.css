@@ -1,0 +1,174 @@
+body {
+    padding-top: 56px;
+  }
+  
+  .navbar {
+    background-color: #A52A2A;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .navbar-brand,
+  .navbar-nav .nav-link {
+    color: #ffffff;
+    padding: 10px;
+  }
+  
+  .navbar-brand:hover,
+  .navbar-nav .nav-link:hover {
+    color: #8d8787;
+  }
+  
+  .navbar-toggler {
+    border-color: #ffffff;
+  }
+  
+  .navbar-toggler-icon {
+    background-color: #ffffff;
+  }
+  
+  .container {
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+    margin-top: 80px; /* Ajustado para añadir espacio por encima del título */
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .column {
+    width: calc(50% - 10px);
+  }
+  
+  .section-title {
+    font-size: 24px;
+    color: #A52A2A;
+    margin-bottom: 15px;
+    margin-top: 25px; /* Agregando margen superior */
+    margin-left: 20px; /* Margen a la izquierda */
+  }
+  
+  
+  .card-container {
+    display: flex;
+    justify-content: center;
+    margin-left: 20px; /* Margen a la izquierda */
+    margin-right: 20px; /* Margen a la derecha */
+  }
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    width: 300px; /* Ancho fijo para los cards */
+    height: 500px; /* Altura fija para los cards */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Sombreado exterior */
+  }
+  
+  .icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #A52A2A;
+  }
+  
+  .values-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .values-list li {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+  .values-list h3 {
+    font-size: 20px;
+    color: #A52A2A;
+    margin-bottom: 10px;
+  }
+  
+  .values-list p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .vehicle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20px; /* Margen a la izquierda */
+    margin-right: 20px; /* Margen a la derecha */
+  }
+  
+  .vehicle-table,
+  .rental-policies-table {
+    width: 100%;
+    max-width: 1250px; /* Ancho máximo deseado */
+    border-collapse: collapse;
+    margin-top: 20px; /* Espacio entre los cards y la tabla */
+    margin-left: 20px; /* Margen a la izquierda */
+    margin-right: 20px; /* Margen a la derecha */
+  }
+  
+  .vehicle-table th, .vehicle-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .vehicle-table th {
+    text-align: left;
+    background-color: #f2f2f2;
+  }
+  
+  .vehicle-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .vehicle-table tbody tr:hover {
+    background-color: #ddd;
+  }
+  
+  .vehicle-icon {
+    font-size: 24px;
+    color: #A52A2A;
+  }
+  .rental-policies-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-left: 20px; /* Margen a la izquierda */
+    margin-right: 20px; /* Margen a la derecha */
+  }
+  
+  .rental-policies-table th, .rental-policies-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .rental-policies-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  .rental-policies-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .rental-policies-table tbody tr:hover {
+    background-color: #ddd;
+  }
+  
+  app-breadcrumbs {
+    display: block;
+    margin-top: 100px; 
+  }
+  
