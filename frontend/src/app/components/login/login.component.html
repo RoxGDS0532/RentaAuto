@@ -1,31 +1,72 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: brown;">
-    <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/">FASTER</a>
-  
+  <div class="container-fluid">
+      <a class="navbar-brand" href="/" style="display: flex; align-items: center;">
+          <div style="width: 50px; height: 50px; background-image: url('/assets/logo.png'); 
+                      background-size: cover; background-position: center;">
+          </div>
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/reserva">Tu Reserva</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/user/empresa">Empresa</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/auto">Flota</a>
-          </li>
-        </ul>
+
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+          <ul class="navbar-nav">
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/reserva">Tu Reserva</a>
+              </li>
+              
+              <!-- Submenú en Empresa -->
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownEmpresa" role="button"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      Empresa
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownEmpresa">
+                      <li><a class="dropdown-item" href="/empresa/mision">Filosofia</a></li>
+                      <li><a class="dropdown-item" href="/empresa/politicas">Politicas</a></li>
+                      <li><a class="dropdown-item" href="/empresa/tarifas">Tarifas</a></li>
+                  </ul>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" href="/auto">Auto</a>
+              </li>
+          </ul>
+
+          <!-- Barra de búsqueda -->
+          <form class="d-flex ms-auto" (submit)="onSearch(); $event.preventDefault()">
+              <input class="form-control" type="search" placeholder="Buscar..." [(ngModel)]="searchTerm" name="searchTerm" (input)="onSearch()" />
+              <button class="btn btn-outline-light" type="submit">
+                  <i class="bi bi-search"></i>
+              </button>
+          </form>
+
+          <a class="nav-link active ms-auto" href="/login">Login</a>
       </div>
-  
-        <a class="btn btn-outline-light ms-auto" href="/">Regresar</a>
-      </div>
+  </div>
 </nav>
+
+<!-- Mostrar los resultados de la búsqueda dentro del navbar -->
+<div *ngIf="searchResults.length > 0" class="search-results">
+  <ul class="list-group">
+      <li *ngFor="let result of searchResults" class="list-group-item">
+          <a [routerLink]="result.url">
+              <h5>{{ result.nombre }}</h5>
+              <p>{{ result.descripcion }}</p>
+          </a>
+      </li>
+  </ul>
+</div>
+
+<!-- Mostrar mensaje si no hay resultados -->
+<div *ngIf="searchResults.length === 0 && searchTerm">
+  <p>No se encontraron resultados para "{{ searchTerm }}"</p>
+</div>
+
 
 <div class="wrapper">
   <div class="login-container">

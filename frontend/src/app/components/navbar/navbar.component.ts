@@ -13,29 +13,40 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  searchTerm: string = '';  // Para enlazar con el input de búsqueda
-  searchResults: any[] = [];  // Para almacenar los resultados de la búsqueda
+  searchTerm: string = '';
+  searchResults: { nombre: string; descripcion: string; url: string }[] = [];
 
+  keywords = [
+    { nombre: 'Autos Disponibles', descripcion: 'Consulta la lista de autos en renta.', url: '/auto' },
+    { nombre: 'Sucursales', descripcion: 'Encuentra nuestras sucursales.', url: '/sucursales' },
+    { nombre: 'Reserva', descripcion: 'Gestiona tu reserva fácilmente.', url: '/reserva' },
+    { nombre: 'Tarifas', descripcion: 'Consulta nuestras tarifas de renta.', url: '/empresa/tarifas' },
+    { nombre: 'Políticas', descripcion: 'Conoce nuestras políticas de servicio.', url: '/empresa/politicas' },
+    { nombre: 'Misión', descripcion: 'Nuestra filosofía y misión.', url: '/empresa/mision' },
+  ];
   constructor(private http: HttpClient,private router: Router, private searchService:SearchService) {}
 
-  onSearch() {
+  /*onSearch() {
     if (this.searchTerm.trim()) {
       this.searchService.buscar(this.searchTerm).subscribe(data => {
-        this.searchResults = data.resultados; // Los resultados de la búsqueda
+        this.searchResults = data.resultados; 
       });
     } else {
       this.searchResults = []; // Si no hay búsqueda, limpia los resultados
     }
-  }
+  }*/
 
-  // Redirigir según la sugerencia seleccionada
-  redirect(sugerencia: any) {
-    if (sugerencia.mensaje === 'Autos Disponibles') {
-      this.router.navigate(['/auto']);
-    } else if (sugerencia.mensaje === 'Sucursales') {
-      this.router.navigate(['/sucursal']);
+    onSearch() {
+      if (this.searchTerm.trim() === '') {
+        this.searchResults = [];
+        return;
+      }
+  
+      const lowerCaseTerm = this.searchTerm.toLowerCase(); 
+      this.searchResults = this.keywords.filter(item =>
+        item.nombre.toLowerCase().includes(lowerCaseTerm) || 
+        item.descripcion.toLowerCase().includes(lowerCaseTerm)
+      );
     }
-    // Agrega otras redirecciones que necesites
-  }
 
 }

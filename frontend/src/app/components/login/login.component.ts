@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { User } from 'src/interfaces/user';
@@ -23,6 +23,8 @@ import { NavbarComponent } from "../navbar/navbar.component";
 
   imports: [
     ReactiveFormsModule,
+    RouterLink,
+    RouterModule,
     CommonModule,
     SpinnerComponent,
     NgxCaptchaModule,
@@ -40,6 +42,9 @@ export class LoginComponent implements OnInit {
   loading: boolean = false;
   isBrowser: boolean;
   siteKey: string = '6Lcdg90qAAAAAE80uDMWIVZ6Z6c9J0zhq8HpxJGJ'; // Tu clave de sitio reCAPTCHA
+  searchTerm: string = '';
+  searchResults: { nombre: string; descripcion: string; url: string }[] = [];
+
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -111,5 +116,31 @@ export class LoginComponent implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+  keywords = [
+    { nombre: 'Autos Disponibles', descripcion: 'Consulta la lista de autos en renta.', url: '/auto' },
+    { nombre: 'Sucursales', descripcion: 'Encuentra nuestras sucursales.', url: '/sucursales' },
+    { nombre: 'Reserva', descripcion: 'Gestiona tu reserva fácilmente.', url: '/reserva' },
+    { nombre: 'Tarifas', descripcion: 'Consulta nuestras tarifas de renta.', url: '/empresa/tarifas' },
+    { nombre: 'Políticas', descripcion: 'Conoce nuestras políticas de servicio.', url: '/empresa/politicas' },
+    { nombre: 'Misión', descripcion: 'Nuestra filosofía y misión.', url: '/empresa/mision' },
+    { nombre: 'Inicio', descripcion: 'Página principal.', url: '/' },
+    { nombre: 'Login', descripcion: 'Accede a tu cuenta.', url: '/login' },
+  ];
+
+  onSearch() {
+    if (this.searchTerm.trim() === '') {
+      this.searchResults = [];
+      return;
+    }
+
+    const lowerCaseTerm = this.searchTerm.toLowerCase();
+
+    // Filtrar resultados que contengan la palabra clave
+    this.searchResults = this.keywords.filter(item =>
+      item.nombre.toLowerCase().includes(lowerCaseTerm) || 
+      item.descripcion.toLowerCase().includes(lowerCaseTerm)
+    );
   }
 }
