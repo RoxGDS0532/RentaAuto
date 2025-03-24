@@ -4,17 +4,17 @@ exports.createAuto = async (req, res) => {
     try {
         let auto;
 
-        //Creamos nuestro auto
+        // No incluir el _id al crear un nuevo auto
         auto = new Auto(req.body);
 
         await auto.save();
         res.send(auto);
-
     } catch (error) {
         console.error(error);
         res.status(500).send('Error en el server');
     }
 }
+
 
 exports.getAutos = async (req, res) => {
     try {

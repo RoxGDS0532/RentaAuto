@@ -94,7 +94,7 @@ export class LoginComponent implements OnInit {
           this.toastr.success('Inicio de sesión exitoso', 'Bienvenido!');
 
           // Redirige a la página deseada
-          this.router.navigate(['/']);
+          this.router.navigate(['/home']);
         } else {
           this.toastr.error('No se recibió token', 'Error');
         }
