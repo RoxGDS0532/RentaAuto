@@ -77,7 +77,6 @@ export class ReservaService {
     kilometraje: 0,
     estado: '',
     tarifa_dia: 0,
-    imagenes: [],
-    cantVehiculos: 0  
+    imagenes: [] 
    };
 

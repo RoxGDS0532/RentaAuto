@@ -94,8 +94,22 @@ export interface AutoModel {
   estado: string;
   tarifa_dia: number;
   imagenes: string[]; // Asumiendo que puede haber varias imágenes
-  cantVehiculos?: number;  // Esto puede estar disponible dependiendo de los datos, si no existe puedes omitirlo
+   // Esto puede estar disponible dependiendo de los datos, si no existe puedes omitirlo
  // categoria?: string; // Si la categoría es opcional
+}
+export class SucursalModel {
+  
+  nombre: string = "";
+  direccion: {
+    calle: string;
+    ciudad: string;
+    pais: string;
+  } = { calle: "", ciudad: "", pais: "" };
+  contacto: {
+    telefono: string;
+    email: string;
+  } = { telefono: "", email: "" };
+  autos_disponibles: string[] = []; // IDs de autos
 }
 
   

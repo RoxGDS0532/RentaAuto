@@ -10,5 +10,6 @@ router.put('/:id', SucursalController.updateSucursal);
 router.delete('/:id', SucursalController.deleteSucursal;*/
 router.post('/', SucursalController.createSucursal);
 
+router.delete('/:id', SucursalController.deleteSucursal);
 
 module.exports = router;

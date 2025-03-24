@@ -12,6 +12,7 @@ import { ReservaComponent } from './components/reserva/reserva.component';
 import { EmpresaComponent } from './components/empresa/empresa.component';
 import { PoliticasComponent } from './components/politicas/politicas.component';
 import { TarifasComponent } from './components/tarifas/tarifas.component';
+import { HomeComponent } from './components/home/home.component'
 
 export const routes: Routes = [
     { path: '', component: HomeUserComponent, data: { titulo: 'Home' } },
@@ -25,6 +26,7 @@ export const routes: Routes = [
     { path: 'empresa/tarifas',  component: TarifasComponent, data: { titulo: 'Tarifa'}},
     {path: 'reserva', component: ReservaComponent, data: {titulo: 'Editar Reserva'}},
     { path: 'mapa', component: MapaComponent, data: { titulo: 'Mapa del sitio' }},
+    { path: 'home', component: HomeComponent, data: { titulo: 'Home Usuario' }},
     { path: 'error500', component: Error500Component, data: { titulo: 'error 500' }},
 
 

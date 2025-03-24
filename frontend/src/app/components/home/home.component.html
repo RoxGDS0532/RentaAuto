@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RentaAuto - Gestión</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #c00;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8f8f8;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form input,
+        button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #c00;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #900;
+        }
+
+        .item {
+            background: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Gestión de Autos y Sucursales</h1>
+    <div class="container">
+        <h2>Agregar Auto</h2>
+        
+        <h2>Agregar Auto</h2>
+        <form (submit)="agregarAuto()">
+          <input type="text" placeholder="Marca" [(ngModel)]="nuevoAuto.marca" name="marca" required>
+          <input type="text" placeholder="Modelo" [(ngModel)]="nuevoAuto.modelo" name="modelo" required>
+          <input type="number" placeholder="Año" [(ngModel)]="nuevoAuto.anio" name="anio" required>
+          <input type="text" placeholder="Color" [(ngModel)]="nuevoAuto.color" name="color" required>
+          <input type="number" placeholder="Kilometraje" [(ngModel)]="nuevoAuto.kilometraje" name="kilometraje" required>
+          <input type="text" placeholder="Transmisión" [(ngModel)]="nuevoAuto.transmision" name="transmision" required>
+          <input type="number" placeholder="Tarifa por día" [(ngModel)]="nuevoAuto.tarifa_dia" name="tarifa_dia" required>
+          
+          <select [(ngModel)]="nuevoAuto.estado" name="estado" required>
+            <option value="Disponible">Disponible</option>
+            <option value="Rentado">Rentado</option>
+          </select>
+          
+          <input type="text" placeholder="Ciudad" [(ngModel)]="nuevoAuto.ubicacion.ciudad" name="ciudad" required>
+          <input type="text" placeholder="Dirección" [(ngModel)]="nuevoAuto.ubicacion.direccion" name="direccion" required>
+          
+          <select [(ngModel)]="nuevoAuto.tipo" name="tipo" required>
+            <option value="Sedán">Sedán</option>
+            <option value="SUV">SUV</option>
+            <option value="Camioneta">Camioneta</option>
+            <option value="Económico">Económico</option>
+            <option value="Estándar">Estándar</option>
+            <option value="Deportivo">Deportivo</option>
+            <option value="Lujoso">Lujoso</option>
+            <option value="Convertible">Convertible</option>
+          </select>
+    
+          <!-- Campo para ingresar imágenes -->
+          <input type="text" placeholder="URL de imagen 1" [(ngModel)]="nuevoAuto.imagenes[0]" name="imagen1">
+          <input type="text" placeholder="URL de imagen 2" [(ngModel)]="nuevoAuto.imagenes[1]" name="imagen2">
+          <input type="text" placeholder="URL de imagen 3" [(ngModel)]="nuevoAuto.imagenes[2]" name="imagen3">
+        
+          <button type="submit">Agregar Auto</button>
+        </form>
+        
+
+          
+        <h2>Lista de Autos</h2>
+        <div *ngFor="let auto of autos" class="item">
+            <p>{{ auto.marca }} {{ auto.modelo }} - {{ auto.anio }}</p>
+            <button (click)="auto._id ? eliminarAuto(auto._id) : null">Eliminar</button>
+        </div>
+
+        <h2>Agregar Sucursal</h2>
+        <form (submit)="agregarSucursal()">
+            <input type="text" placeholder="Nombre" [(ngModel)]="nuevaSucursal.nombre" name="nombre" required>
+            <input type="text" placeholder="Ciudad" [(ngModel)]="nuevaSucursal.direccion.ciudad" name="ciudad" required>
+            <button type="submit">Agregar Sucursal</button>
+        </form>
+
+        <h2>Lista de Sucursales</h2>
+        <div *ngFor="let sucursal of sucursales" class="item">
+            <p>{{ sucursal.nombre }} - {{ sucursal.direccion.ciudad }}</p>
+            <button (click)="sucursal.nombre">Eliminar</button>
+        </div>
+    </div>
+</body>
+
+</html>
