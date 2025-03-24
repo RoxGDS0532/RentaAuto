@@ -15,7 +15,7 @@ exports.loginUser = async (req, res) => {
       null,
       {
         params: {
-          secret: '6Lcdg90qAAAAABnM91XshaND3q7iFgLU1Y5TVTgQ',
+          secret: '6Lcdg90qAAAAABnM91XshaND3q7iFgLU1Y5TVTgQ', // Clave secreta (asegúrate de guardarla en variables de entorno)
           response: recaptchaToken,
         },
       }
@@ -31,8 +31,9 @@ exports.loginUser = async (req, res) => {
       return res.status(400).json({ msg: 'Usuario no encontrado' });
     }
 
-    // Comparar las contraseñas directamente (sin encriptación)
-    if (user.password !== password) {
+    // Comparar la contraseña ingresada con la almacenada en la BD
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
       return res.status(401).json({ msg: 'Contraseña incorrecta' });
     }
 

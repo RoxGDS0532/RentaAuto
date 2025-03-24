@@ -32,6 +32,7 @@ const userSchema = new Schema({
     type: String,
     enum: ['Encargado', 'Administrador'],
     default: 'Encargado',
+    required: true,
   },
 });
 

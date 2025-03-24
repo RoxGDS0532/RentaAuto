@@ -31,7 +31,7 @@ export class SignInComponent implements OnInit {
   nombre: string = '';
   apellido: string = '';
   correoElectronico: string = '';
-  NumeroTelefono:string='';
+  numeroTelefono: string = ''; // <-- Corregido
   loading: boolean = false;
 
  
@@ -48,7 +48,7 @@ export class SignInComponent implements OnInit {
   addUser() {
 
     // Validamos que el usuario ingrese valores
-    if (this.username == '' || this.password == '' || this.confirmPassword == '' ||this.nombre == '' || this.apellido== '' ||  this.correoElectronico == '' || this.NumeroTelefono=='') {
+    if (this.username == '' || this.password == '' || this.confirmPassword == '' ||this.nombre == '' || this.apellido== '' ||  this.correoElectronico == '' || this.numeroTelefono=='') {
       this.toastr.error('Todos los campos son obligatorios', 'Error');
       return;
     }
@@ -63,13 +63,13 @@ export class SignInComponent implements OnInit {
     const user: Usuario = {
       username: this.username,
       password: this.password,
-      Nombre: this.nombre ,
-      Apellido: this.apellido ,
-      CorreoElectronico: this.correoElectronico ,
-      NumeroTelefono:this.NumeroTelefono
-
-      
+      nombre: this.nombre,  // <-- Corregido
+      apellido: this.apellido,  // <-- Corregido
+      correoElectronico: this.correoElectronico,  // <-- Corregido
+      numeroTelefono: this.numeroTelefono  // <-- Corregido
     }
+    
+    
 
     this.loading = true;
     this._userService.signIn(user).subscribe({
