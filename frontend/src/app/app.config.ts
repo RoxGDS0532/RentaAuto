@@ -23,6 +23,8 @@ import { NgbCarouselModule, } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 registerLocaleData(localeEs);
 
@@ -36,6 +38,7 @@ export const appConfig: ApplicationConfig = {
     CommonModule,
     provideAnimations(),
     provideToastr(),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: LOCALE_ID, useValue: 'es' },
     SocialLoginModule,
     SpinnerComponent,
