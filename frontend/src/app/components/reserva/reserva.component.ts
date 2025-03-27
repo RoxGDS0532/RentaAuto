@@ -9,6 +9,10 @@ import { ToastrService } from 'ngx-toastr';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { LugarService } from '../../services/lugar.service';
+import { ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ReservaService } from '../../services/reserva.service';
+
 
 @Component({
   selector: 'app-reserva',
@@ -28,41 +32,44 @@ export class ReservaComponent {
 
 
   
-   constructor(private reservaCompletaService: ReservaCompletaService,private toastrService:ToastrService,private fb: FormBuilder,private sanitizer: DomSanitizer, private lugarService:LugarService) { 
+   constructor(private reservaCompletaService: ReservaCompletaService,private toastrService:ToastrService,private fb: FormBuilder,private sanitizer: DomSanitizer, private lugarService:LugarService,   private route: ActivatedRoute
+   ) { 
     this.reservaEncontrada = new ReservaModel();
     this.reservaForm = this.fb.group({
-      _id: [null],
       cliente: ['', Validators.required],
-      correo: ['', Validators.required],
+      correo: ['', [Validators.required, Validators.email]],
       telefono: ['', Validators.required],
+      vehiculo: ['', Validators.required],
       sucursalA: ['', Validators.required],
+      sucursalD: ['', Validators.required],
       fechaA: ['', Validators.required],
       horaA: ['', Validators.required],
       fechaD: ['', Validators.required],
-      horaD: ['', Validators.required],
-      sucursalD: ['', Validators.required],
-      estatado: ['', Validators.required],
-      costo_total: ['', Validators.required],
-      vehiculo: ['', Validators.required]
+      horaD: ['', Validators.required]
     });
    }
    ngOnInit(): void {
+    this.cargarSucursales();
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.obtenReserva(id);
+    }
    }
 
    obtenReserva(idReserva: string) {
-     this.reservaCompletaService.getReservaById(idReserva).subscribe(
-       (reserva: ReservaModel) => {
-         this.reservaEncontrada = reserva;
-         console.log('Reserva encontrada:', this.reservaEncontrada);
-       },
-     (error) => {
-         console.error('Error al obtener reserva:', error);
-         this.toastrService.error('Reserva no encontrada. Verifica tus datos', 'Error');
-       }
-     );
-   }
+    this.reservaCompletaService.getReservaById(idReserva).subscribe(
+      (reserva: ReservaModel) => {
+        this.reservaEncontrada = reserva;
+        console.log('Reserva encontrada:', this.reservaEncontrada);
+      },
+      (error) => {  // Aquí se cierra el primer bloque de subscribe correctamente
+        console.error('Error al obtener reserva:', error);
+        this.toastrService.error('Reserva no encontrada. Verifica tus datos', 'Error');
+      }
+    );
+  }
+  
    
-
    
   cancelarReserva(id: string | undefined): void {
     if (id) {
@@ -87,18 +94,17 @@ export class ReservaComponent {
 
   actualizarReserva(): void {
     if (this.reservaForm.valid) {
-      this.reservaCompletaService.updateReserva(this.reservaForm.value).subscribe(
-        () => {
-          this.reservaForm.reset();
-          this.toastrService.success('Reserva actualizada correctamente', 'Aviso');
-        },
-        error => {
-          console.error('Error al actualizar Reserva:', error);
-          this.toastrService.error('Error al actualizar la reserva  ', 'Error');
-        }
-      );
+      const updatedReserva: ReservaModel = { ...this.reservaEncontrada, ...this.reservaForm.value };
+      this.reservaCompletaService.updateReserva(updatedReserva).subscribe(reserva => {
+        alert('Reserva actualizada con éxito!');
+        this.reservaEncontrada = reserva;
+        this.mostrarForm = false;  // Ocultar el formulario después de la actualización
+      });
+    } else {
+      alert('Por favor, completa todos los campos del formulario.');
     }
   }
+
 
   mostrarFormulario(): void {
     this.mostrarForm = true;

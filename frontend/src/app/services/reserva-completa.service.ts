@@ -42,11 +42,12 @@ export class ReservaCompletaService {
   }
 
   updateReserva(newReserva: ReservaModel) {
-    return this.http.put(`${this.domain}/api/Reserva/${newReserva._id}`, newReserva).pipe(
+    return this.http.put<ReservaModel>(`${this.domain}/api/Reserva/${newReserva._id}`, newReserva).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
+  
 
   private handleError(error: any) {
     console.error('An error occurred:', error);
