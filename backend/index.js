@@ -14,9 +14,9 @@ conectarDB();
 
 // Habilitamos CORS para permitir solicitudes desde el frontend en Angular (puerto 4200)
 app.use(cors({
-  origin: 'http://localhost:4200',  // Esto permite solicitudes desde tu frontend en Angular
-  methods: ['GET', 'POST'],        // Métodos permitidos
-  credentials: true,               // Permite enviar cookies si las estás utilizando
+  origin: 'http://localhost:4200',  
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
 }));
 
 // Middleware para parsear JSON
