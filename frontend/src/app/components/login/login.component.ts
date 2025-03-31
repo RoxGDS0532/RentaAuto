@@ -77,16 +77,13 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    const { username, password } = this.loginForm.value;
-    const user: User = { username, password };
-
+    const { username, password, recaptcha } = this.loginForm.value;
     this.loading = true;
     this.toastr.info('Iniciando sesión...', 'Cargando');
 
- 
-    this.authService.login(username, password).subscribe({
+    this.authService.login(username, password, recaptcha).subscribe({
       next: (response) => {
-        if (response && response.token) {
+        if (response?.token) {
           localStorage.setItem('token', response.token);
           this.userGlobalService.setUserName(username);
           this.toastr.success('Inicio de sesión exitoso', 'Bienvenido!');
@@ -98,19 +95,10 @@ export class LoginComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         console.error('Error de login', error);
-        if (error.status === 404) {
-          this.toastr.error('El usuario no existe', 'Error');
-        } else if (error.status === 400) {
-          this.toastr.error('Usuario o contraseña incorrectos', 'Error');
-        } else {
-          this.toastr.error('Ocurrió un error inesperado', 'Error');
-        }
+        this.toastr.error('Usuario o contraseña incorrectos', 'Error');
         this.loading = false;
       }
     });
-    
-
-
   }
 
   keywords = [
