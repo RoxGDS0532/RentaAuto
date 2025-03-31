@@ -2,43 +2,47 @@
     <app-navbar></app-navbar>
     <div class="container" style="margin-top: 180px; margin-bottom: 100px;">
         <div class="card mx-auto mt-5 custom-card" style="max-width: 800px; ">
-            <div class="card-body">
-
-               
+            <div class="card-body">    
                 <div class="alert alert-danger text-center mt-5" role="alert">
                     ¡Alquila el auto perfecto para tu viaje! Reserva en minutos y disfruta sin preocupaciones. 
                   </div>
                 <p class="card-text fs-6">Tu destino para alquilar el auto perfecto.</p>
                 <form class="row g-3">
                     <div class="col-md-6 col-12">
-                      <label for="lugarS" class="form-label fs-6">Sucursal de Salida:</label>
-                      <select class="form-control" id="sucursalA" [(ngModel)]="sucursalA" name="sucursalA">
+                      <label for="sucursalA" class="form-label fs-6">Sucursal de Salida:</label>
+                      <select class="form-control" id="sucursalA" [(ngModel)]="sucursalA" name="sucursalA" required [ngClass]="{'is-invalid': sucursalAInvalida}">
                         <option value="">Selecciona una Sucursal</option>
                         <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal">{{ sucursal.nombre }}</option>
                       </select>
+                      <div class="invalid-feedback">Selecciona una Sucursal de Salida.</div>
                     </div>
                     <div class="col-md-3 col-6">
-                      <label for="fechasS" class="form-label fs-6">Salida:</label>
-                      <input type="date" class="form-control" id="fechasS" [(ngModel)]="fechaA" name="fechaA">
+                      <label for="fechaA" class="form-label fs-6">Salida:</label>
+                      <input type="date" class="form-control" id="fechaA" [(ngModel)]="fechaA" name="fechaA" [min]="fechaHoy" [ngClass]="{'is-invalid': fechaAInvalida}">
+                      <div class="invalid-feedback">Selecciona una Fecha de Salida.</div>
                     </div>
                     <div class="col-md-3 col-6">
-                      <label for="horasS" class="form-label fs-6">Hora:</label>
-                      <input type="time" class="form-control" id="horasS" [(ngModel)]="horaA" name="horaA">
+                      <label for="horaA" class="form-label fs-6">Hora:</label>
+                      <input type="time" class="form-control" id="horaA" [(ngModel)]="horaA" name="horaA" [ngClass]="{'is-invalid': horaAInvalida}">
+                      <div class="invalid-feedback">Selecciona una Hora de Salida.</div>
                     </div>
                     <div class="col-md-6 col-12">
-                      <label for="lugarE" class="form-label fs-6">Sucursal de Entrega:</label>
-                      <select class="form-control" id="sucursalD" [(ngModel)]="sucursalD" name="sucursalD">
+                      <label for="sucursalD" class="form-label fs-6">Sucursal de Entrega:</label>
+                      <select class="form-control" id="sucursalD" [(ngModel)]="sucursalD" name="sucursalD" [ngClass]="{'is-invalid': sucursalDInvalida}">
                         <option value="">Selecciona una Sucursal</option>
                         <option *ngFor="let sucursal of sucursales" [ngValue]="sucursal">{{ sucursal.nombre }}</option>
                       </select>
+                      <div class="invalid-feedback">Selecciona una Sucursal de Entrega.</div>
                     </div>
                     <div class="col-md-3 col-6">
-                      <label for="fechasE" class="form-label fs-6">Entrega:</label>
-                      <input type="date" class="form-control" id="fechasE" [(ngModel)]="fechaD" name="fechaD">
+                      <label for="fechaD" class="form-label fs-6">Entrega:</label>
+                      <input type="date" class="form-control" id="fechaD" [(ngModel)]="fechaD" name="fechaD" [min]="fechaA" [ngClass]="{'is-invalid': fechaDInvalida}">
+                      <div class="invalid-feedback">Selecciona una Fecha de Entrega.</div>
                     </div>
                     <div class="col-md-3 col-6">
                       <label for="horasE" class="form-label fs-6">Hora:</label>
-                      <input type="time" class="form-control" id="horasE" [(ngModel)]="horaD" name="horaD">
+                      <input type="time" class="form-control" id="horasE" [(ngModel)]="horaD" name="horaD" [ngClass]="{'is-invalid': horaDInvalida}">
+                      <div class="invalid-feedback">Selecciona una Hora de Entrega.</div>
                     </div>
                     <div class="col-12">
                       <button type="button" class="btn btn-danger btn-lg w-100" (click)="onClick()">¡Reserva tu auto ahora!</button>

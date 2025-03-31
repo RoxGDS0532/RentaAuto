@@ -21,7 +21,7 @@
                     <a class="nav-link" href="/reserva">Tu Reserva</a>
                 </li>
                 <!-- Submenú en Empresa -->
-                <li class="nav-item dropdown">
+                <li  class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownEmpresa" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Empresa
@@ -43,6 +43,7 @@
             </ul>
 
             <!-- Barra de búsqueda -->
+
             <form class="d-flex ms-auto position-relative" (submit)="onSearch(); $event.preventDefault()">
                 <div class="position-relative w-100">
                     <div class="input-group">
@@ -70,6 +71,31 @@
                 </div>
             </form>
             <a class="nav-link active ms-auto" href="/login">Inicio de Sesion</a>
+
+<form class="d-flex ms-auto position-relative" (submit)="onSearch(); $event.preventDefault()">
+    <div class="position-relative w-100">
+        <div class="input-group">
+            <input class="form-control" type="search" placeholder="Buscar..." [(ngModel)]="searchTerm" name="searchTerm" (input)="onSearch()" />
+            <button class="btn btn-light" type="submit">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+        
+        <!-- Resultados de búsqueda dentro del formulario -->
+        <div *ngIf="searchResults.length > 0" class="search-results">
+            <ul class="list-group">
+                <li *ngFor="let result of searchResults" class="list-group-item">
+                    <a [routerLink]="result.url">
+                        <h5 class="result-title">{{ result.nombre }}</h5>
+                        <p class="result-description">{{ result.descripcion }}</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</form>
+            <a class="nav-link active ms-auto" href="/login" style="color:white">Inicio de Sesion</a>
+
         </div>
     </div>
 </nav>
