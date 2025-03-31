@@ -13,8 +13,6 @@ import { EmpresaComponent } from './components/empresa/empresa.component';
 import { PoliticasComponent } from './components/politicas/politicas.component';
 import { TarifasComponent } from './components/tarifas/tarifas.component';
 import { HomeComponent } from './components/home/home.component'
-import { AuthGuard } from './guards/auth.guard'
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export const routes: Routes = [
     { path: '', component: HomeUserComponent, data: { titulo: 'Home' } },
@@ -30,6 +28,7 @@ export const routes: Routes = [
     { path: 'mapa', component: MapaComponent, data: { titulo: 'Mapa del sitio' }},
     { path: 'home', component: HomeComponent, data: { titulo: 'Home Usuario' }},
     { path: 'error500', component: Error500Component, data: { titulo: 'error 500' }},
+
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
    // { path: '**', redirectTo: '/login' },
 
