@@ -20,15 +20,15 @@ export class UserService {
   }
 
   login(user: User): Observable<string> {
-    const recaptchaToken = grecaptcha.getResponse();
+    const recaptchaToken = grecaptcha?.getResponse ? grecaptcha.getResponse() : '';
 
     if (!recaptchaToken) {
-      return throwError('Por favor, verifica el reCAPTCHA');
+      return throwError(() => new Error('Por favor, verifica el reCAPTCHA'));
     }
 
     const loginData = {
       ...user,
-      recaptchaToken  // Añadir el token de reCAPTCHA al objeto de login
+      recaptchaToken
     };
 
     return this.http.post<string>(`${this.myAppUrl}${this.myApiUrl}/login`, loginData);

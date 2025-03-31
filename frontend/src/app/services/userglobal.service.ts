@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root' // Esto lo registra como un servicio global
+  providedIn: 'root'
 })
 export class UserglobalService {
-  private localStorageKey = 'username'; // Clave para almacenar el nombre de usuario en LocalStorage
-  private unidad = '0';
+  private localStorageKey = 'username';
 
-  setUserName(username: string) {
-    localStorage.setItem(this.localStorageKey, username); // Almacena el nombre de usuario en LocalStorage
+  setUserName(username: string): void {
+    localStorage.setItem(this.localStorageKey, username);
   }
 
   getUserName(): string {
-    return localStorage.getItem(this.localStorageKey) || ''; // Obtiene el nombre de usuario desde LocalStorage
+    return localStorage.getItem(this.localStorageKey) || '';
   }
 
+  clearUser(): void {
+    localStorage.removeItem(this.localStorageKey);
+  }
 }
-

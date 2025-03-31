@@ -1,8 +1,8 @@
-import { Injectable, HostListener } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { tap, catchError, map } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
@@ -12,17 +12,14 @@ export class AuthService {
   private apiUrl = 'http://localhost:3000/api/users';
   private timeout: any;
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.resetSessionTimeout();
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(username: string, password: string, recaptchaToken: string): Observable<{ token: string } | null> {
     const body = { username, password, recaptchaToken };
     return this.http.post<{ token: string }>(`${this.apiUrl}/login`, body).pipe(
       tap(response => {
         if (response?.token) {
-          localStorage.setItem('token', response.token);
-          this.resetSessionTimeout();
+          this.setToken(response.token);
         }
       }),
       catchError((error) => {
@@ -30,6 +27,15 @@ export class AuthService {
         return of(null);
       })
     );
+  }
+
+  forgotPassword(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/forgot-password`, data);
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem('token', token);
+    this.resetSessionTimeout();
   }
 
   logout(): void {
@@ -48,21 +54,32 @@ export class AuthService {
   }
 
   isAuthenticated(): Observable<boolean> {
-    return of(!!this.getToken()); // Devuelve `true` si hay un token almacenado
+    return of(!!this.getToken());
   }
 
-  resetSessionTimeout(): void {
+  getUserRole(): string | null {
+    const token = this.getToken();
+    if (token) {
+      const decoded: any = jwtDecode(token);
+      return decoded?.role || null;
+    }
+    return null;
+  }
+
+  getUserName(): string | null {
+    const token = this.getToken();
+    if (token) {
+      const decoded: any = jwtDecode(token);
+      return decoded?.username || null;
+    }
+    return null;
+  }
+
+
+  private resetSessionTimeout(): void {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       this.logout();
-    }, 30 * 60 * 1000);
-  }
-
-  @HostListener('window:mousemove') resetTimeout(): void {
-    this.resetSessionTimeout();
-  }
-
-  @HostListener('window:keydown') resetTimeoutOnKey(): void {
-    this.resetSessionTimeout();
+    }, 1 * 60 * 1000); 
   }
 }
