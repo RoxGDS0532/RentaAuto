@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BreadcrumbsComponent } from "../../shared/breadcrumbs/breadcrumbs.component";
 import { NavbarComponent } from "../navbar/navbar.component";
 import { FooterComponent } from "../footer/footer.component";
-import { ReservaModel } from 'src/app/models/datosModels';
+import { AutoModel, ReservaModel } from 'src/app/models/datosModels';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ReservaCompletaService } from 'src/app/services/reserva-completa.service';
 import { ToastrService } from 'ngx-toastr';
@@ -11,7 +11,10 @@ import { CommonModule } from '@angular/common';
 import { LugarService } from '../../services/lugar.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ReservaService } from '../../services/reserva.service';
+import { DatePipe } from '@angular/common';
+import { AutosService } from '../../services/autos.service';
+import { Observable } from 'rxjs';
+
 
 
 @Component({
@@ -32,7 +35,7 @@ export class ReservaComponent {
 
 
   
-   constructor(private reservaCompletaService: ReservaCompletaService,private toastrService:ToastrService,private fb: FormBuilder,private sanitizer: DomSanitizer, private lugarService:LugarService,   private route: ActivatedRoute
+   constructor(private reservaCompletaService: ReservaCompletaService,private toastrService:ToastrService,private fb: FormBuilder,private sanitizer: DomSanitizer, private lugarService:LugarService,   private route: ActivatedRoute, private datePipe: DatePipe, private autosService:AutosService
    ) { 
     this.reservaEncontrada = new ReservaModel();
     this.reservaForm = this.fb.group({
@@ -62,7 +65,7 @@ export class ReservaComponent {
         this.reservaEncontrada = reserva;
         console.log('Reserva encontrada:', this.reservaEncontrada);
       },
-      (error) => {  // Aquí se cierra el primer bloque de subscribe correctamente
+      (error) => {
         console.error('Error al obtener reserva:', error);
         this.toastrService.error('Reserva no encontrada. Verifica tus datos', 'Error');
       }
@@ -92,18 +95,65 @@ export class ReservaComponent {
     console.log(reserva);
   }
 
+  
   actualizarReserva(): void {
     if (this.reservaForm.valid) {
-      const updatedReserva: ReservaModel = { ...this.reservaEncontrada, ...this.reservaForm.value };
+      // Obtenemos las fechas del formulario
+      const fechaA: string | null = this.reservaForm.value.fechaA;
+      const fechaD: string | null = this.reservaForm.value.fechaD;
+  
+      // Verificamos que las fechas no sean null o undefined
+      if (!fechaA || !fechaD) {
+        this.toastrService.error('Las fechas son obligatorias', 'Error');
+        return;
+      }
+  
+      // Convertimos las fechas de string a Date
+      const fechaAObj: Date = new Date(fechaA);
+      const fechaDObj: Date = new Date(fechaD);
+  
+      // Verificamos que las fechas sean válidas
+      if (isNaN(fechaAObj.getTime()) || isNaN(fechaDObj.getTime())) {
+        this.toastrService.error('Las fechas no son válidas', 'Error');
+        return;
+      }
+  
+      // Calculamos los días de diferencia entre fechaA y fechaD
+      const diffTime = fechaDObj.getTime() - fechaAObj.getTime();
+      const diffDays = diffTime / (1000 * 3600 * 24); // Convertir de milisegundos a días
+  
+      // Obtenemos la tarifa diaria del vehículo
+      //const tarifaPorDia = this.reservaEncontrada.vehiculo.tarifaPorDia; // Asumiendo que tienes este dato en la reserva
+  
+      // Calculamos el costo total
+      //const costoTotal = diffDays * tarifaPorDia;
+  
+      // Creamos un objeto de reserva actualizado con los nuevos valores
+      const updatedReserva: ReservaModel = {
+        ...this.reservaEncontrada,
+        sucursalA: this.reservaForm.value.sucursalA.nombre,
+        sucursalD: this.reservaForm.value.sucursalD.nombre,
+        fechaA: fechaAObj, // Asignamos el objeto Date
+        fechaD: fechaDObj, // Asignamos el objeto Date
+        costo_total: 58 // Asignamos el costo calculado
+      };
+  
+      // Realizamos la actualización de la reserva
       this.reservaCompletaService.updateReserva(updatedReserva).subscribe(reserva => {
         this.toastrService.success('Reserva actualizada con éxito', 'Aviso');
         this.reservaEncontrada = reserva;
         this.mostrarForm = false;
       });
     } else {
-      this.toastrService.error('No se logro actualizar su Reserva', 'Error');
+      this.toastrService.error('No se logró actualizar su Reserva', 'Error');
     }
   }
+  
+  
+  
+  
+  
+
 
 
   mostrarFormulario(): void {

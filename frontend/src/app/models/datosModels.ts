@@ -93,9 +93,7 @@ export interface AutoModel {
   kilometraje: number;
   estado: string;
   tarifa_dia: number;
-  imagenes: string[]; // Asumiendo que puede haber varias imágenes
-   // Esto puede estar disponible dependiendo de los datos, si no existe puedes omitirlo
- // categoria?: string; // Si la categoría es opcional
+  imagenes: string[];
 }
 export class SucursalModel {
   
