@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-4">
+  <app-breadcrumbs></app-breadcrumbs>
+
+  <h2>Bienvenido, {{ userName }}</h2>
+  <p>Este es tu panel de control.</p>
+
+  <button (click)="logout()" class="btn btn-danger">Cerrar Sesión</button>
+</div>
+
+<app-footer></app-footer>

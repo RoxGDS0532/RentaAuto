@@ -100,8 +100,16 @@
       </p>
     </div>
 
+    <button (click)="showForgotPassword = true">¿Olvidaste tu contraseña?</button>
+
+<div *ngIf="showForgotPassword">
+  <form [formGroup]="forgotForm" (ngSubmit)="sendRecoveryEmail()">
+    <input formControlName="correoElectronico" placeholder="Ingresa tu correo" />
+    <button type="submit">Enviar</button>
+  </form>
+</div>
+
     <app-spinner *ngIf="loading"></app-spinner>
   </div>
 </div>
 <app-footer></app-footer>
-

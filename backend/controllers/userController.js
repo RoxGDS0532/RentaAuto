@@ -2,6 +2,10 @@ const axios = require('axios');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const express = require('express');
+const nodemailer = require('nodemailer');
+const router = express.Router();
+
 
 // Función para iniciar sesión de usuario
 // Función para iniciar sesión de usuario
@@ -51,6 +55,61 @@ exports.loginUser = async (req, res) => {
 };
 
 
+
+// Configuración del transportador de correo
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'alejandra.glv.gg@gmail.com',
+    pass: 'rmgj zyvk ilvp gumm'
+  }
+});
+
+
+// Endpoint para solicitar recuperación de contraseña
+router.post('/forgot-password', async (req, res) => {
+  const { correoElectronico } = req.body;
+
+  try {
+    const user = await User.findOne({ correoElectronico });
+    if (!user) return res.status(400).json({ msg: 'Correo no registrado' });
+
+    const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
+    const link = `http://localhost:4200/reset-password?token=${token}`;
+
+    await transporter.sendMail({
+      from: 'alejandra.glv.gg@gmail.com',
+      to: user.correoElectronico,
+      subject: 'Recuperación de Contraseña',
+      text: `Haz clic en el siguiente enlace para restablecer tu contraseña: ${link}`
+    });
+
+    res.json({ msg: 'Correo enviado' });
+  } catch (error) {
+    res.status(500).json({ msg: 'Error en el servidor', error });
+  }
+});
+
+// Endpoint para cambiar la contraseña
+router.post('/reset-password', async (req, res) => {
+  const { token, newPassword } = req.body;
+  try {
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    const user = await User.findById(decoded.id);
+    if (!user) return res.status(400).json({ msg: 'Usuario no encontrado' });
+
+    user.password = await bcrypt.hash(newPassword, 10);
+    await user.save();
+
+    res.json({ msg: 'Contraseña actualizada' });
+  } catch (error) {
+    res.status(500).json({ msg: 'Error al actualizar contraseña', error });
+  }
+});
+
+
+
+
 // Función para crear un nuevo usuario
 exports.newUser = async (req, res) => {
   const { username, password, nombre, apellido, correoElectronico, numeroTelefono, rol } = req.body;
@@ -88,3 +147,5 @@ exports.getUsers = async (req, res) => {
     res.status(500).json({ msg: 'Error al obtener usuarios', error });
   }
 };
+
+

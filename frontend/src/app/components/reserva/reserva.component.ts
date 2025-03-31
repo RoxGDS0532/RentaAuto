@@ -140,9 +140,9 @@ export class ReservaComponent {
   
       // Realizamos la actualización de la reserva
       this.reservaCompletaService.updateReserva(updatedReserva).subscribe(reserva => {
-        this.toastrService.success('Reserva actualizada con éxito', 'Aviso');
+        alert('Reserva actualizada con éxito!');
         this.reservaEncontrada = reserva;
-        this.mostrarForm = false;
+        this.mostrarForm = false;  // Ocultar el formulario después de la actualización
       });
     } else {
       this.toastrService.error('No se logró actualizar su Reserva', 'Error');

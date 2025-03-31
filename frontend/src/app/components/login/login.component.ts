@@ -15,7 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BreadcrumbsComponent } from "../../shared/breadcrumbs/breadcrumbs.component";
 import { FooterComponent } from "../footer/footer.component";
 import { NavbarComponent } from "../navbar/navbar.component";
-
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -37,6 +37,8 @@ import { NavbarComponent } from "../navbar/navbar.component";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  showForgotPassword = false;
+  forgotForm: FormGroup;
 
   loginForm!: FormGroup;
   loading: boolean = false;
@@ -45,17 +47,29 @@ export class LoginComponent implements OnInit {
   searchTerm: string = '';
   searchResults: { nombre: string; descripcion: string; url: string }[] = [];
 
-
+  
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private toastr: ToastrService,
     private _userService: UserService,
     private router: Router,
+    //private authService: AuthService,
     private usergo: UserglobalService,
     private formBuilder: FormBuilder,
+    private fb: FormBuilder,
+    private authService: AuthService,
+
     
   ) { 
     this.isBrowser = isPlatformBrowser(this.platformId);
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      recaptcha: ['', Validators.required]
+    });
+    this.forgotForm = this.fb.group({
+      correoElectronico: ['', [Validators.required, Validators.email]]
+    });
   }
 
   ngOnInit(): void {
@@ -81,40 +95,42 @@ export class LoginComponent implements OnInit {
     }
 
     const { username, password, recaptcha } = this.loginForm.value;
-    const user: User = { username, password };
-
     this.loading = true;
-    this.toastr.info('Iniciando sesión...', 'Cargando');
-      // Mensaje informativo
+    this.toastr.info('Iniciando sesión...', 'Cargando');
 
-    this._userService.login(user).subscribe({
-      next: (token) => {
-        console.log(token);  // Verifica lo que está devolviendo la API
-
-        if (token) {
-          localStorage.setItem('token', token);
-          this.usergo.setUserName(username);
-
-          // Mostrar la notificación de éxito
-          this.toastr.success('Inicio de sesión exitoso', 'Bienvenido!');
-
-          // Redirige a la página deseada
+    this.authService.login(username, password, recaptcha).subscribe({
+      next: (response) => {
+        this.loading = false;
+        if (response?.token) {
+          this.toastr.success('Inicio de sesión exitoso', 'Bienvenido!');
           this.router.navigate(['/home']);
         } else {
-          this.toastr.error('No se recibió token', 'Error');
+          this.toastr.error('No se recibió token', 'Error');
         }
       },
       error: (error: HttpErrorResponse) => {
-        console.error('Error de login', error); // Verifica el error completo
-        if (error.status === 404) {
-          this.toastr.error('El usuario no existe', 'Error');
-        } else if (error.status === 400) {
-          this.toastr.error('Usuario o contraseña incorrectos', 'Error');
-        } else {
-          this.toastr.error('Ocurrió un error inesperado', 'Error');
-        }
         this.loading = false;
+        console.error('Error de login', error);
+        this.handleLoginError(error);
       }
+    });
+  }
+
+  private handleLoginError(error: HttpErrorResponse): void {
+    if (error.status === 404) {
+      this.toastr.error('El usuario no existe', 'Error');
+    } else if (error.status === 400) {
+      this.toastr.error('Usuario o contraseña incorrectos', 'Error');
+    } else {
+      this.toastr.error('Ocurrió un error inesperado', 'Error');
+    }
+  }
+
+  sendRecoveryEmail(): void {
+    if (this.forgotForm.invalid) return;
+    this.authService.forgotPassword(this.forgotForm.value).subscribe({
+      next: () => this.toastr.success('Correo enviado'),
+      error: () => this.toastr.error('Error al enviar')
     });
   }
 
