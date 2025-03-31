@@ -16,7 +16,7 @@ conectarDB();
 app.use(cors({
   origin: 'http://localhost:4200',  
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true,
+  credentials: true,               // Permite enviar cookies si las estás utilizando
 }));
 
 // Middleware para parsear JSON
