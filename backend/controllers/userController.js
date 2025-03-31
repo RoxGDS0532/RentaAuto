@@ -67,7 +67,7 @@ const transporter = nodemailer.createTransport({
 
 
 // Endpoint para solicitar recuperación de contraseña
-router.post('/forgot-password', async (req, res) => {
+exports.forgotPassword = async (req, res) => {
   const { correoElectronico } = req.body;
 
   try {
@@ -88,10 +88,10 @@ router.post('/forgot-password', async (req, res) => {
   } catch (error) {
     res.status(500).json({ msg: 'Error en el servidor', error });
   }
-});
+};
 
 // Endpoint para cambiar la contraseña
-router.post('/reset-password', async (req, res) => {
+exports.resetPassword = async (req, res) => {
   const { token, newPassword } = req.body;
   try {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
@@ -105,7 +105,7 @@ router.post('/reset-password', async (req, res) => {
   } catch (error) {
     res.status(500).json({ msg: 'Error al actualizar contraseña', error });
   }
-});
+};
 
 
 
