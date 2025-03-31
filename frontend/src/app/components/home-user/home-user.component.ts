@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { ReservaService } from 'src/app/services/reserva.service';
 import { ReservaLugarModel } from 'src/app/models/datosModels';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -29,13 +30,26 @@ export class HomeUserComponent implements OnInit{
   sucursalD: any = {};  
   fechaD: string = "";
   horaD: string = "";
+  fechaHoy: string = "";
 
-  constructor(private lugarService: LugarService, private router: Router, private reservaService: ReservaService) {}
+sucursalAInvalida: boolean = false;
+sucursalDInvalida: boolean = false;
+fechaAInvalida: boolean = false;
+fechaDInvalida: boolean = false;
+horaAInvalida: boolean = false;
+horaDInvalida: boolean = false;
+
+  constructor(private lugarService: LugarService, private router: Router, private reservaService: ReservaService, private toastrService:ToastrService) {}
 
   ngOnInit(): void {
     this.cargarSucursales();
+    this.setMinDate();
   }
 
+  setMinDate(): void {
+    const today = new Date();
+    this.fechaHoy = today.toISOString().split('T')[0]; 
+  }
   redirectToLogin() {
     this.router.navigate(['/login']);
   }
@@ -52,6 +66,17 @@ export class HomeUserComponent implements OnInit{
   }
 
   onClick(): void {
+    this.sucursalAInvalida = !this.sucursalA || !this.sucursalA.nombre;
+    this.sucursalDInvalida = !this.sucursalD || !this.sucursalD.nombre;
+    this.fechaAInvalida = !this.fechaA;
+    this.fechaDInvalida = !this.fechaD;
+    this.horaAInvalida = !this.horaA;
+    this.horaDInvalida = !this.horaD;
+  
+    if (this.sucursalAInvalida || this.sucursalDInvalida || this.fechaAInvalida || this.fechaDInvalida || this.horaAInvalida || this.horaDInvalida) {
+      return; // No continúa si hay errores
+    }
+
     const reserva: ReservaLugarModel = {
       sucursalA: this.sucursalA.nombre,
       fechaA: new Date(this.fechaA),
