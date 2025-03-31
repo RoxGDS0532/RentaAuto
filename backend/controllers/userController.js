@@ -5,7 +5,7 @@ const User = require('../models/User');
 const express = require('express');
 const nodemailer = require('nodemailer');
 const router = express.Router();
-
+require('dotenv').config();
 
 // Función para iniciar sesión de usuario
 // Función para iniciar sesión de usuario
@@ -55,18 +55,24 @@ exports.loginUser = async (req, res) => {
 };
 
 
-
 // Configuración del transportador de correo
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,
   auth: {
-    user: 'alejandra.glv.gg@gmail.com',
-    pass: 'rmgj zyvk ilvp gumm'
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  },
+  tls: {
+    rejectUnauthorized: false // Esto a veces ayuda en entornos de desarrollo
   }
 });
 
 
-// Endpoint para solicitar recuperación de contraseña
+
+const jwtSecret = process.env.JWT_SECRET;
+
 exports.forgotPassword = async (req, res) => {
   const { correoElectronico } = req.body;
 
@@ -74,11 +80,11 @@ exports.forgotPassword = async (req, res) => {
     const user = await User.findOne({ correoElectronico });
     if (!user) return res.status(400).json({ msg: 'Correo no registrado' });
 
-    const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ id: user._id }, jwtSecret, { expiresIn: '1h' });
     const link = `http://localhost:4200/reset-password?token=${token}`;
 
     await transporter.sendMail({
-      from: 'alejandra.glv.gg@gmail.com',
+      from: process.env.EMAIL_USER,
       to: user.correoElectronico,
       subject: 'Recuperación de Contraseña',
       text: `Haz clic en el siguiente enlace para restablecer tu contraseña: ${link}`
@@ -86,15 +92,16 @@ exports.forgotPassword = async (req, res) => {
 
     res.json({ msg: 'Correo enviado' });
   } catch (error) {
+    console.error('Error en forgotPassword:', error);
     res.status(500).json({ msg: 'Error en el servidor', error });
   }
 };
 
-// Endpoint para cambiar la contraseña
+
 exports.resetPassword = async (req, res) => {
   const { token, newPassword } = req.body;
   try {
-    const decoded = jwt.verify(token, process.env.SECRET_KEY);
+    const decoded = jwt.verify(token, jwtSecret);
     const user = await User.findById(decoded.id);
     if (!user) return res.status(400).json({ msg: 'Usuario no encontrado' });
 
@@ -106,8 +113,6 @@ exports.resetPassword = async (req, res) => {
     res.status(500).json({ msg: 'Error al actualizar contraseña', error });
   }
 };
-
-
 
 
 // Función para crear un nuevo usuario
