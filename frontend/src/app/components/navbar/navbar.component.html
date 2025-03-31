@@ -1,10 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: brown;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/" style="display: flex; align-items: center;">
-            <div style="width: 50px; height: 50px; background-image: url('/assets/logo.png'); 
-                        background-size: cover; background-position: center;">
-            </div>
-        </a>
+        <img style="
+        width: 80px; 
+        height: 80px;  
+        background-size: contain    ; 
+        background-position: center; 
+        background-repeat: no-repeat;" src="/assets/logo.png" alt="Logo" href="/">
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -13,12 +15,11 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/reserva">Tu Reserva</a>
-                </li>
-                
+                </li>           
                 <!-- Submenú en Empresa -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownEmpresa" role="button"
@@ -34,6 +35,10 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="/auto">Auto</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/">¿Ya reservaste tu auto?</a>
                 </li>
             </ul>
 
@@ -56,11 +61,14 @@
                         <p class="result-description">{{ result.descripcion }}</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">¿Ya reservaste tu auto?</a>
+                </li>
             </ul>
         </div>
     </div>
 </form>
-            <a class="nav-link active ms-auto" href="/login">Login</a>
+            <a class="nav-link active ms-auto" href="/login">Inicio de Sesion</a>
         </div>
     </div>
 </nav>

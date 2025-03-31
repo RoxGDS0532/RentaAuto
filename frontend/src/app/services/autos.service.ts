@@ -20,6 +20,12 @@ export class AutosService {
     );
   }
 
+  getAutosById(id: string) {
+      return this.http.get<AutoModel>(`${this.domain}/api/auto/${id}`).pipe(
+        catchError(this.handleError)
+      );
+    }
+
   // Actualizar la cantidad de autos
   updateCantidadAuto(autoId: string, cantidad: number) {
     return this.http.put(`${this.domain}/api/auto/${autoId}`, { cantidad }).pipe(
